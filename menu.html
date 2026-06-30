@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Veterinário Menu</title>
+    <link rel="stylesheet" href="menu.css">
+
+</head>
+<body>
+    <div class="menu-container">
+        <header>
+        <h1>Menu do Sistema Veterinário</h1>
+        </header>
+
+        <aside>
+            <ul>
+                <li><button onclick="abrirTela('cadastroPet')">Cadastro de Pets</button></li>
+                <li><button onclick="abrirTela('ConsultarPets')">Consultar Pets</button></li>
+                <li><button onclick="abrirTela('EstoqueRemedios')">Estoque de Remedios</button></li>
+            </ul>
+        </aside>
+
+        <main>
+            <section id="inicio" >
+                <h1>Bem-vindo ao Sistema Veterinário</h1>
+                <p>Selecione uma opção no menu para começar.</p>
+            </section>
+
+        <section id="cadastroPet" style="display: none;">
+            <h2>Cadastro de Pets</h2>
+            <p>Insira os dados do Pet</p>
+
+            <p>Nome: <input type="text" id="nomePet" placeholder="Digite o nome do Pet"></p>
+            <p>Especie: <select id="especie">
+            <option value="Cachorro">Cachorro</option>
+            <option value="Gato">Gato</option>
+            </select></p>
+            <p>Raça: <input type="text" id="raca" placeholder="Digite a raça do Pet"></p>
+            <p>Idade: <input type="number" id="idade" placeholder="Digite a idade do Pet"></p>
+            <p>Dono: <input type="text" id="dono" placeholder="Digite o nome do dono"></p>
+
+            <button onclick="cadastrarPet()">Cadastrar Pet</button>
+
+        </section>
+
+        <section id="ConsultarPets" style="display: none;">
+            <h2>Consultar Pets</h2>
+            <p>aqui depois eu irei implementar a lógica para consultar os pets cadastrados</p>
+        </section>
+
+        <section id="EstoqueRemedios" style="display: none;">
+            <h2>Estoque de Remedios</h2>
+            <p>aqui depois eu irei implementar a lógica para consultar o estoque de remedios</p>
+        </section>
+
+
+        </main>
+
+        
+        
+        
+
+    </div>
+
+    <script src="menuJS.js"></script>
