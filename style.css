@@ -1,21 +1,24 @@
 /* RESET */
 :root {
-    --verde-profundo: #123f3a;
-    --verde-petroleo: #176b68;
-    --verde-principal: #249b84;
-    --menta: #dff7ef;
-    --azul-suave: #eaf3ff;
-    --coral: #f06f5f;
-    --coral-claro: #fff0ed;
-    --amarelo: #f5c85b;
+    --verde-900: #0f3d39;
+    --verde-800: #155f5a;
+    --verde-600: #1f9f88;
+    --verde-100: #dff7ef;
+    --azul-100: #eaf3ff;
+    --coral-600: #f06f5f;
+    --coral-100: #fff0ed;
+    --amarelo-500: #f5c85b;
     --branco: #ffffff;
-    --fundo: #f7fbfa;
-    --texto: #193733;
-    --texto-suave: #6c7d79;
-    --borda: rgba(23, 107, 104, 0.18);
-    --borda-forte: rgba(23, 107, 104, 0.32);
-    --sombra: 0 24px 58px rgba(18, 63, 58, 0.16);
-    --sombra-suave: 0 12px 30px rgba(18, 63, 58, 0.1);
+    --fundo: #f6fbfa;
+    --campo: #fbfffd;
+    --texto: #183834;
+    --texto-suave: #687a76;
+    --borda: rgba(21, 95, 90, 0.18);
+    --borda-forte: rgba(21, 95, 90, 0.34);
+    --raio: 8px;
+    --sombra-card: 0 24px 58px rgba(15, 61, 57, 0.16);
+    --sombra-suave: 0 12px 30px rgba(15, 61, 57, 0.1);
+    --transicao: 0.18s ease;
 }
 
 * {
@@ -29,7 +32,11 @@ input {
     font: inherit;
 }
 
-/* BODY */
+button {
+    cursor: pointer;
+}
+
+/* BASE */
 html {
     min-height: 100%;
     font-family: "Segoe UI", Arial, sans-serif;
@@ -41,30 +48,41 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background:
-        linear-gradient(135deg, rgba(223, 247, 239, 0.9), rgba(234, 243, 255, 0.72) 46%, rgba(255, 240, 237, 0.9)),
+        linear-gradient(135deg, rgba(223, 247, 239, 0.95), rgba(234, 243, 255, 0.78) 45%, rgba(255, 240, 237, 0.88)),
         var(--fundo);
 }
 
-body::before {
+body::before,
+body::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-    background:
-        linear-gradient(120deg, rgba(36, 155, 132, 0.08) 0 1px, transparent 1px 90px),
-        linear-gradient(30deg, rgba(240, 111, 95, 0.07) 0 1px, transparent 1px 118px);
     pointer-events: none;
+}
+
+body::before {
+    background:
+        linear-gradient(90deg, rgba(31, 159, 136, 0.08) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(31, 159, 136, 0.06) 1px, transparent 1px);
+    background-size: 86px 86px;
+}
+
+body::after {
+    top: auto;
+    height: 26vh;
+    background: linear-gradient(90deg, rgba(21, 95, 90, 0.16), rgba(240, 111, 95, 0.12));
+    clip-path: polygon(0 34%, 100% 0, 100% 100%, 0 100%);
 }
 
 /* LOGIN */
 .inicial-container {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
+    align-content: center;
     gap: 18px;
-    padding: 34px 18px;
+    padding: 36px 18px;
     text-align: center;
 }
 
@@ -75,10 +93,10 @@ body::before {
     justify-content: center;
     min-height: 36px;
     padding: 0 18px;
-    border: 1px solid rgba(36, 155, 132, 0.24);
+    border: 1px solid rgba(31, 159, 136, 0.24);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.82);
-    color: var(--verde-petroleo);
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--verde-800);
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -88,12 +106,22 @@ body::before {
 
 h1 {
     width: min(100%, 820px);
-    color: var(--verde-profundo);
+    color: var(--verde-900);
     font-size: clamp(42px, 7vw, 76px);
     font-weight: 850;
     line-height: 1;
     letter-spacing: 0;
     overflow-wrap: break-word;
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 84px;
+    height: 5px;
+    margin: 18px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--verde-600), var(--amarelo-500), var(--coral-600));
 }
 
 .inicial-container > p {
@@ -103,21 +131,21 @@ h1 {
     line-height: 1.45;
 }
 
-/* FORM */
+/* FORMULARIO */
 .form-container {
     position: relative;
+    isolation: isolate;
     width: 100%;
-    max-width: 430px;
-    display: flex;
-    flex-direction: column;
+    max-width: 440px;
+    display: grid;
     gap: 14px;
     margin-top: 18px;
-    padding: 34px 30px 30px;
+    padding: 38px 30px 30px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.78);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.96);
-    box-shadow: var(--sombra);
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: var(--raio);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 255, 252, 0.96));
+    box-shadow: var(--sombra-card);
 }
 
 .form-container::before {
@@ -127,7 +155,29 @@ h1 {
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, var(--verde-principal), var(--amarelo), var(--coral));
+    background: linear-gradient(90deg, var(--verde-600), var(--amarelo-500), var(--coral-600));
+}
+
+.form-container::after {
+    content: "";
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(31, 159, 136, 0.18);
+    border-radius: var(--raio);
+    background:
+        linear-gradient(var(--verde-600), var(--verde-600)) center / 22px 5px no-repeat,
+        linear-gradient(var(--verde-600), var(--verde-600)) center / 5px 22px no-repeat,
+        rgba(223, 247, 239, 0.7);
+    opacity: 0.72;
+    z-index: 0;
+}
+
+.form-container > * {
+    position: relative;
+    z-index: 1;
 }
 
 .inputUsuario,
@@ -137,71 +187,72 @@ h1 {
     min-height: 52px;
     padding: 0 16px;
     border: 1px solid var(--borda);
-    border-radius: 8px;
+    border-radius: var(--raio);
     outline: none;
-    background: #fbfffd;
+    background: var(--campo);
     color: var(--texto);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
     transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
+        border-color var(--transicao),
+        box-shadow var(--transicao),
+        background var(--transicao),
+        transform var(--transicao);
 }
 
 .senhaAdmin {
     margin-top: 4px;
     border-color: rgba(240, 111, 95, 0.35);
-    background: var(--coral-claro);
+    background: var(--coral-100);
 }
 
 .inputUsuario::placeholder,
 .inputSenha::placeholder,
 .senhaAdmin::placeholder {
-    color: #8b9a97;
+    color: #899b97;
 }
 
 .inputUsuario:focus,
 .inputSenha:focus,
 .senhaAdmin:focus {
-    border-color: var(--verde-principal);
+    border-color: var(--verde-600);
     background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(36, 155, 132, 0.14);
+    box-shadow: 0 0 0 4px rgba(31, 159, 136, 0.14);
     transform: translateY(-1px);
 }
 
 .senhaAdmin:focus {
-    border-color: var(--coral);
+    border-color: var(--coral-600);
     box-shadow: 0 0 0 4px rgba(240, 111, 95, 0.16);
 }
 
-/* BUTTONS */
+/* BOTOES */
 .btnLogin,
 .btnCadastro {
     width: 100%;
     min-height: 52px;
-    border: 0;
-    border-radius: 8px;
+    border-radius: var(--raio);
     font-weight: 800;
-    cursor: pointer;
+    letter-spacing: 0;
     transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        filter 0.18s ease,
-        border-color 0.18s ease,
-        background 0.18s ease;
+        transform var(--transicao),
+        box-shadow var(--transicao),
+        filter var(--transicao),
+        border-color var(--transicao),
+        background var(--transicao);
 }
 
 .btnLogin {
     margin-top: 4px;
-    background: linear-gradient(135deg, var(--verde-petroleo), var(--verde-principal));
+    border: 0;
+    background: linear-gradient(135deg, var(--verde-800), var(--verde-600));
     color: var(--branco);
-    box-shadow: 0 14px 28px rgba(36, 155, 132, 0.26);
+    box-shadow: 0 14px 28px rgba(31, 159, 136, 0.28);
 }
 
 .btnCadastro {
     border: 1px solid rgba(240, 111, 95, 0.42);
     background: var(--branco);
-    color: var(--coral);
+    color: var(--coral-600);
     box-shadow: 0 10px 22px rgba(240, 111, 95, 0.1);
 }
 
@@ -212,12 +263,12 @@ h1 {
 }
 
 .btnLogin:hover {
-    box-shadow: 0 18px 34px rgba(36, 155, 132, 0.32);
+    box-shadow: 0 18px 34px rgba(31, 159, 136, 0.34);
 }
 
 .btnCadastro:hover {
-    border-color: var(--coral);
-    background: var(--coral-claro);
+    border-color: var(--coral-600);
+    background: var(--coral-100);
     box-shadow: 0 16px 30px rgba(240, 111, 95, 0.16);
 }
 
@@ -228,7 +279,7 @@ h1 {
 
 .btnLogin:focus-visible,
 .btnCadastro:focus-visible {
-    outline: 4px solid rgba(36, 155, 132, 0.24);
+    outline: 4px solid rgba(31, 159, 136, 0.24);
     outline-offset: 3px;
 }
 
@@ -236,33 +287,41 @@ h1 {
     outline-color: rgba(240, 111, 95, 0.25);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto;
+        transition-duration: 0.01ms;
+    }
+}
+
 /* RESPONSIVO */
 @media (max-width: 520px) {
     .inicial-container {
         align-items: stretch;
-        justify-content: flex-start;
-        padding-top: 68px;
+        justify-content: start;
+        padding-top: 64px;
     }
 
     .inicial-container::before {
-        align-self: center;
+        justify-self: center;
     }
 
     h1 {
-        align-self: center;
+        justify-self: center;
         width: min(calc(100vw - 36px), 10ch);
         font-size: clamp(34px, 12vw, 46px);
         line-height: 1.05;
     }
 
-    .inicial-container > p {
+    .inicial-container > p,
+    .form-container {
         width: calc(100vw - 36px);
-        max-width: 100%;
+        max-width: 440px;
     }
 
     .form-container {
-        width: calc(100vw - 36px);
-        max-width: 430px;
-        padding: 28px 22px 22px;
+        padding: 34px 22px 22px;
     }
 }

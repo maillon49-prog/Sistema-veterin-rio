@@ -2,23 +2,25 @@
 :root {
     --header-altura: 82px;
     --menu-largura: 280px;
-    --verde-profundo: #123f3a;
-    --verde-petroleo: #176b68;
-    --verde-principal: #249b84;
-    --menta: #dff7ef;
-    --azul-suave: #eaf3ff;
-    --coral: #f06f5f;
-    --coral-claro: #fff0ed;
-    --amarelo: #f5c85b;
+    --verde-900: #0f3d39;
+    --verde-800: #155f5a;
+    --verde-600: #1f9f88;
+    --verde-100: #dff7ef;
+    --azul-100: #eaf3ff;
+    --coral-600: #f06f5f;
+    --coral-100: #fff0ed;
+    --amarelo-500: #f5c85b;
     --branco: #ffffff;
-    --fundo: #f7fbfa;
-    --texto: #193733;
-    --texto-suave: #6c7d79;
-    --borda: rgba(23, 107, 104, 0.18);
-    --borda-forte: rgba(23, 107, 104, 0.32);
-    --sombra-header: 0 10px 26px rgba(18, 63, 58, 0.22);
-    --sombra-painel: 0 18px 44px rgba(18, 63, 58, 0.12);
-    --sombra-suave: 0 10px 24px rgba(18, 63, 58, 0.1);
+    --fundo: #f6fbfa;
+    --campo: #fbfffd;
+    --texto: #183834;
+    --texto-suave: #687a76;
+    --borda: rgba(21, 95, 90, 0.18);
+    --borda-forte: rgba(21, 95, 90, 0.34);
+    --raio: 8px;
+    --sombra-header: 0 10px 26px rgba(15, 61, 57, 0.22);
+    --sombra-painel: 0 18px 44px rgba(15, 61, 57, 0.12);
+    --transicao: 0.18s ease;
 }
 
 * {
@@ -35,9 +37,10 @@ select {
 
 button {
     border: 0;
+    cursor: pointer;
 }
 
-/* BODY */
+/* BASE */
 html {
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--texto);
@@ -48,7 +51,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background:
-        linear-gradient(135deg, rgba(223, 247, 239, 0.88), rgba(234, 243, 255, 0.8) 48%, rgba(255, 240, 237, 0.78)),
+        linear-gradient(135deg, rgba(223, 247, 239, 0.92), rgba(234, 243, 255, 0.82) 48%, rgba(255, 240, 237, 0.8)),
         var(--fundo);
 }
 
@@ -58,12 +61,13 @@ body::before {
     inset: 0;
     z-index: -1;
     background:
-        linear-gradient(120deg, rgba(36, 155, 132, 0.07) 0 1px, transparent 1px 94px),
-        linear-gradient(30deg, rgba(240, 111, 95, 0.06) 0 1px, transparent 1px 126px);
+        linear-gradient(90deg, rgba(31, 159, 136, 0.07) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(31, 159, 136, 0.05) 1px, transparent 1px);
+    background-size: 86px 86px;
     pointer-events: none;
 }
 
-/* HEADER */
+/* CABECALHO */
 header {
     position: fixed;
     top: 0;
@@ -75,8 +79,22 @@ header {
     align-items: center;
     justify-content: center;
     padding: 18px 28px;
-    background: linear-gradient(135deg, var(--verde-profundo), var(--verde-petroleo));
+    background: linear-gradient(135deg, var(--verde-900), var(--verde-800));
     box-shadow: var(--sombra-header);
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--raio);
+    background:
+        linear-gradient(var(--branco), var(--branco)) center / 20px 5px no-repeat,
+        linear-gradient(var(--branco), var(--branco)) center / 5px 20px no-repeat,
+        rgba(255, 255, 255, 0.12);
 }
 
 header::after {
@@ -86,7 +104,7 @@ header::after {
     bottom: 0;
     left: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--verde-principal), var(--amarelo), var(--coral));
+    background: linear-gradient(90deg, var(--verde-600), var(--amarelo-500), var(--coral-600));
 }
 
 header h1 {
@@ -98,12 +116,11 @@ header h1 {
     letter-spacing: 0;
 }
 
-/* CONTAINER */
+/* LAYOUT */
 .menu-container {
     min-height: 100vh;
 }
 
-/* MENU */
 aside {
     position: fixed;
     top: var(--header-altura);
@@ -113,12 +130,14 @@ aside {
     height: calc(100vh - var(--header-altura));
     padding: 28px 18px;
     overflow-y: auto;
-    background: linear-gradient(180deg, var(--verde-petroleo), var(--verde-profundo));
+    background:
+        linear-gradient(180deg, rgba(21, 95, 90, 0.96), rgba(15, 61, 57, 0.98)),
+        var(--verde-900);
     border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 aside::before {
-    content: "Menu";
+    content: "Painel";
     display: block;
     margin: 0 8px 18px;
     color: rgba(255, 255, 255, 0.72);
@@ -138,21 +157,24 @@ aside ul {
 aside button {
     position: relative;
     width: 100%;
-    min-height: 52px;
-    padding: 0 16px 0 18px;
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 14px 0 18px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: var(--raio);
     background: rgba(255, 255, 255, 0.08);
     color: var(--branco);
-    font-weight: 750;
+    font-weight: 760;
     text-align: left;
-    cursor: pointer;
     transition:
-        background 0.22s ease,
-        border-color 0.22s ease,
-        transform 0.22s ease,
-        box-shadow 0.22s ease;
+        background var(--transicao),
+        border-color var(--transicao),
+        transform var(--transicao),
+        box-shadow var(--transicao);
 }
 
 aside button::before {
@@ -163,19 +185,44 @@ aside button::before {
     left: 0;
     width: 4px;
     border-radius: 0 999px 999px 0;
-    background: var(--coral);
+    background: var(--coral-600);
     opacity: 0;
-    transition: opacity 0.22s ease;
+    transition: opacity var(--transicao);
 }
 
-aside button:hover {
+aside button::after {
+    min-width: 30px;
+    padding: 4px 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+}
+
+aside li:nth-child(1) button::after {
+    content: "01";
+}
+
+aside li:nth-child(2) button::after {
+    content: "02";
+}
+
+aside li:nth-child(3) button::after {
+    content: "03";
+}
+
+aside button:hover,
+aside button:focus-visible {
     transform: translateX(4px);
     background: rgba(255, 255, 255, 0.16);
-    border-color: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 }
 
-aside button:hover::before {
+aside button:hover::before,
+aside button:focus-visible::before {
     opacity: 1;
 }
 
@@ -184,7 +231,6 @@ aside button:focus-visible {
     outline-offset: 3px;
 }
 
-/* MAIN */
 main {
     min-height: 100vh;
     margin-left: var(--menu-largura);
@@ -192,17 +238,18 @@ main {
     background: transparent;
 }
 
-/* SECTIONS */
+/* PAINEIS */
 section {
     position: relative;
+    isolation: isolate;
     width: min(100%, 980px);
     min-height: 360px;
     margin: 0 auto;
     padding: 38px 34px 34px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: var(--raio);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 255, 252, 0.96));
     box-shadow: var(--sombra-painel);
 }
 
@@ -213,13 +260,33 @@ section::before {
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, var(--verde-principal), var(--amarelo), var(--coral));
+    background: linear-gradient(90deg, var(--verde-600), var(--amarelo-500), var(--coral-600));
+}
+
+section::after {
+    content: "";
+    position: absolute;
+    right: 28px;
+    bottom: 28px;
+    width: 96px;
+    height: 96px;
+    border-radius: var(--raio);
+    background:
+        linear-gradient(var(--verde-600), var(--verde-600)) center / 48px 10px no-repeat,
+        linear-gradient(var(--verde-600), var(--verde-600)) center / 10px 48px no-repeat;
+    opacity: 0.045;
+    z-index: 0;
+}
+
+section > * {
+    position: relative;
+    z-index: 1;
 }
 
 section h1,
 section h2 {
     margin-bottom: 14px;
-    color: var(--verde-profundo);
+    color: var(--verde-900);
     font-size: clamp(28px, 3.3vw, 42px);
     font-weight: 850;
     line-height: 1.15;
@@ -239,23 +306,46 @@ section p {
     overflow-wrap: break-word;
 }
 
-#inicio p {
+#inicio p,
+#ConsultarPets p,
+#EstoqueRemedios p {
     max-width: 620px;
+    padding: 14px 16px;
+    border: 1px solid var(--borda);
+    border-left: 4px solid var(--amarelo-500);
+    border-radius: var(--raio);
+    background: rgba(255, 255, 255, 0.7);
 }
 
-/* FORM */
+/* FORMULARIO */
 #cadastroPet {
     max-width: 760px;
 }
 
-#cadastroPet p {
+#cadastroPet > p:first-of-type {
+    display: inline-flex;
+    width: auto;
+    padding: 9px 14px;
+    border: 1px solid rgba(31, 159, 136, 0.2);
+    border-radius: 999px;
+    background: var(--verde-100);
+    color: var(--verde-800);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+#cadastroPet > p:not(:first-of-type) {
     display: grid;
     grid-template-columns: 96px minmax(0, 1fr);
     align-items: center;
     gap: 14px;
     margin-top: 16px;
     color: var(--texto);
-    font-weight: 750;
+    font-weight: 760;
+}
+
+#cadastroPet > p:not(:first-of-type):focus-within {
+    color: var(--verde-800);
 }
 
 input,
@@ -264,26 +354,27 @@ select {
     min-height: 48px;
     padding: 0 14px;
     border: 1px solid var(--borda-forte);
-    border-radius: 8px;
+    border-radius: var(--raio);
     outline: none;
-    background: #fbfffd;
+    background: var(--campo);
     color: var(--texto);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
     transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
+        border-color var(--transicao),
+        box-shadow var(--transicao),
+        background var(--transicao),
+        transform var(--transicao);
 }
 
 input::placeholder {
-    color: #8b9a97;
+    color: #899b97;
 }
 
 input:focus,
 select:focus {
-    border-color: var(--verde-principal);
+    border-color: var(--verde-600);
     background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(36, 155, 132, 0.14);
+    box-shadow: 0 0 0 4px rgba(31, 159, 136, 0.14);
     transform: translateY(-1px);
 }
 
@@ -291,26 +382,25 @@ select {
     cursor: pointer;
 }
 
-/* BUTTONS */
+/* BOTOES */
 main button {
     min-height: 50px;
     margin-top: 24px;
     padding: 0 22px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--verde-petroleo), var(--verde-principal));
+    border-radius: var(--raio);
+    background: linear-gradient(135deg, var(--verde-800), var(--verde-600));
     color: var(--branco);
     font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 12px 24px rgba(36, 155, 132, 0.24);
+    box-shadow: 0 12px 24px rgba(31, 159, 136, 0.24);
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
+        transform var(--transicao),
+        box-shadow var(--transicao),
+        filter var(--transicao);
 }
 
 main button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 30px rgba(36, 155, 132, 0.3);
+    box-shadow: 0 16px 30px rgba(31, 159, 136, 0.3);
     filter: brightness(1.04);
 }
 
@@ -323,12 +413,25 @@ main button:focus-visible {
     outline-offset: 3px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto;
+        transition-duration: 0.01ms;
+    }
+}
+
 /* RESPONSIVO */
 @media (max-width: 900px) {
     header {
         position: static;
         min-height: auto;
         padding: 22px 18px;
+    }
+
+    header::before {
+        display: none;
     }
 
     aside {
@@ -348,10 +451,11 @@ main button:focus-visible {
 
     aside button {
         min-height: 56px;
-        text-align: center;
+        text-align: left;
     }
 
-    aside button:hover {
+    aside button:hover,
+    aside button:focus-visible {
         transform: translateY(-2px);
     }
 
@@ -376,13 +480,16 @@ main button:focus-visible {
         grid-template-columns: 1fr;
     }
 
-    aside button {
-        text-align: left;
-    }
-
     section {
         min-height: 280px;
         padding: 30px 22px 22px;
+    }
+
+    section::after {
+        right: 18px;
+        bottom: 18px;
+        width: 76px;
+        height: 76px;
     }
 
     section h1,
@@ -394,7 +501,7 @@ main button:focus-visible {
         font-size: 16px;
     }
 
-    #cadastroPet p {
+    #cadastroPet > p:not(:first-of-type) {
         grid-template-columns: 1fr;
         gap: 8px;
     }
