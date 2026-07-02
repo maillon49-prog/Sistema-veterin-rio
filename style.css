@@ -1,15 +1,21 @@
 /* RESET */
 :root {
-    --verde-profundo: #0f3d35;
-    --verde-escuro: #14594b;
-    --verde-principal: #1f8f6f;
-    --verde-claro: #dff4eb;
-    --verde-suave: #f2fbf7;
+    --verde-profundo: #123f3a;
+    --verde-petroleo: #176b68;
+    --verde-principal: #249b84;
+    --menta: #dff7ef;
+    --azul-suave: #eaf3ff;
+    --coral: #f06f5f;
+    --coral-claro: #fff0ed;
+    --amarelo: #f5c85b;
     --branco: #ffffff;
-    --texto: #17322d;
-    --texto-suave: #62746f;
-    --borda: rgba(31, 143, 111, 0.2);
-    --sombra: 0 24px 60px rgba(15, 61, 53, 0.16);
+    --fundo: #f7fbfa;
+    --texto: #193733;
+    --texto-suave: #6c7d79;
+    --borda: rgba(23, 107, 104, 0.18);
+    --borda-forte: rgba(23, 107, 104, 0.32);
+    --sombra: 0 24px 58px rgba(18, 63, 58, 0.16);
+    --sombra-suave: 0 12px 30px rgba(18, 63, 58, 0.1);
 }
 
 * {
@@ -28,15 +34,15 @@ html {
     min-height: 100%;
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--texto);
-    background: var(--verde-suave);
+    background: var(--fundo);
 }
 
 body {
     min-height: 100vh;
     overflow-x: hidden;
     background:
-        linear-gradient(135deg, rgba(223, 244, 235, 0.95), rgba(242, 251, 247, 0.9)),
-        var(--verde-suave);
+        linear-gradient(135deg, rgba(223, 247, 239, 0.9), rgba(234, 243, 255, 0.72) 46%, rgba(255, 240, 237, 0.9)),
+        var(--fundo);
 }
 
 body::before {
@@ -45,8 +51,8 @@ body::before {
     inset: 0;
     z-index: -1;
     background:
-        linear-gradient(120deg, rgba(31, 143, 111, 0.08) 0 1px, transparent 1px 92px),
-        linear-gradient(30deg, rgba(20, 89, 75, 0.06) 0 1px, transparent 1px 120px);
+        linear-gradient(120deg, rgba(36, 155, 132, 0.08) 0 1px, transparent 1px 90px),
+        linear-gradient(30deg, rgba(240, 111, 95, 0.07) 0 1px, transparent 1px 118px);
     pointer-events: none;
 }
 
@@ -69,15 +75,15 @@ body::before {
     justify-content: center;
     min-height: 36px;
     padding: 0 18px;
-    border: 1px solid var(--borda);
+    border: 1px solid rgba(36, 155, 132, 0.24);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.78);
-    color: var(--verde-escuro);
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--verde-petroleo);
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    box-shadow: 0 10px 28px rgba(15, 61, 53, 0.08);
+    box-shadow: var(--sombra-suave);
 }
 
 h1 {
@@ -99,23 +105,36 @@ h1 {
 
 /* FORM */
 .form-container {
+    position: relative;
     width: 100%;
     max-width: 430px;
     display: flex;
     flex-direction: column;
     gap: 14px;
     margin-top: 18px;
-    padding: 30px;
+    padding: 34px 30px 30px;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.78);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255, 255, 255, 0.96);
     box-shadow: var(--sombra);
 }
 
-.inputUsuario,
-.inputSenha {
+.form-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    min-height: 50px;
+    height: 6px;
+    background: linear-gradient(90deg, var(--verde-principal), var(--amarelo), var(--coral));
+}
+
+.inputUsuario,
+.inputSenha,
+.senhaAdmin {
+    width: 100%;
+    min-height: 52px;
     padding: 0 16px;
     border: 1px solid var(--borda);
     border-radius: 8px;
@@ -125,52 +144,96 @@ h1 {
     transition:
         border-color 0.2s ease,
         box-shadow 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.senhaAdmin {
+    margin-top: 4px;
+    border-color: rgba(240, 111, 95, 0.35);
+    background: var(--coral-claro);
 }
 
 .inputUsuario::placeholder,
-.inputSenha::placeholder {
-    color: #8aa09a;
+.inputSenha::placeholder,
+.senhaAdmin::placeholder {
+    color: #8b9a97;
 }
 
 .inputUsuario:focus,
-.inputSenha:focus {
+.inputSenha:focus,
+.senhaAdmin:focus {
     border-color: var(--verde-principal);
     background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(31, 143, 111, 0.14);
+    box-shadow: 0 0 0 4px rgba(36, 155, 132, 0.14);
+    transform: translateY(-1px);
+}
+
+.senhaAdmin:focus {
+    border-color: var(--coral);
+    box-shadow: 0 0 0 4px rgba(240, 111, 95, 0.16);
 }
 
 /* BUTTONS */
-.btnLogin {
+.btnLogin,
+.btnCadastro {
     width: 100%;
     min-height: 52px;
-    margin-top: 4px;
     border: 0;
     border-radius: 8px;
-    background: linear-gradient(135deg, var(--verde-escuro), var(--verde-principal));
-    color: var(--branco);
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 14px 28px rgba(31, 143, 111, 0.26);
     transition:
         transform 0.18s ease,
         box-shadow 0.18s ease,
-        filter 0.18s ease;
+        filter 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+}
+
+.btnLogin {
+    margin-top: 4px;
+    background: linear-gradient(135deg, var(--verde-petroleo), var(--verde-principal));
+    color: var(--branco);
+    box-shadow: 0 14px 28px rgba(36, 155, 132, 0.26);
+}
+
+.btnCadastro {
+    border: 1px solid rgba(240, 111, 95, 0.42);
+    background: var(--branco);
+    color: var(--coral);
+    box-shadow: 0 10px 22px rgba(240, 111, 95, 0.1);
+}
+
+.btnLogin:hover,
+.btnCadastro:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.03);
 }
 
 .btnLogin:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 34px rgba(31, 143, 111, 0.32);
-    filter: brightness(1.04);
+    box-shadow: 0 18px 34px rgba(36, 155, 132, 0.32);
 }
 
-.btnLogin:active {
+.btnCadastro:hover {
+    border-color: var(--coral);
+    background: var(--coral-claro);
+    box-shadow: 0 16px 30px rgba(240, 111, 95, 0.16);
+}
+
+.btnLogin:active,
+.btnCadastro:active {
     transform: translateY(0);
 }
 
-.btnLogin:focus-visible {
-    outline: 4px solid rgba(31, 143, 111, 0.24);
+.btnLogin:focus-visible,
+.btnCadastro:focus-visible {
+    outline: 4px solid rgba(36, 155, 132, 0.24);
     outline-offset: 3px;
+}
+
+.btnCadastro:focus-visible {
+    outline-color: rgba(240, 111, 95, 0.25);
 }
 
 /* RESPONSIVO */
@@ -200,6 +263,6 @@ h1 {
     .form-container {
         width: calc(100vw - 36px);
         max-width: 430px;
-        padding: 22px;
+        padding: 28px 22px 22px;
     }
 }

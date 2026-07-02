@@ -2,18 +2,23 @@
 :root {
     --header-altura: 82px;
     --menu-largura: 280px;
-    --verde-profundo: #0f3d35;
-    --verde-escuro: #14594b;
-    --verde-principal: #1f8f6f;
-    --verde-claro: #dff4eb;
-    --verde-suave: #f2fbf7;
+    --verde-profundo: #123f3a;
+    --verde-petroleo: #176b68;
+    --verde-principal: #249b84;
+    --menta: #dff7ef;
+    --azul-suave: #eaf3ff;
+    --coral: #f06f5f;
+    --coral-claro: #fff0ed;
+    --amarelo: #f5c85b;
     --branco: #ffffff;
-    --texto: #17322d;
-    --texto-suave: #62746f;
-    --borda: rgba(31, 143, 111, 0.2);
-    --borda-forte: rgba(31, 143, 111, 0.34);
-    --sombra-header: 0 8px 24px rgba(15, 61, 53, 0.2);
-    --sombra-card: 0 18px 42px rgba(15, 61, 53, 0.11);
+    --fundo: #f7fbfa;
+    --texto: #193733;
+    --texto-suave: #6c7d79;
+    --borda: rgba(23, 107, 104, 0.18);
+    --borda-forte: rgba(23, 107, 104, 0.32);
+    --sombra-header: 0 10px 26px rgba(18, 63, 58, 0.22);
+    --sombra-painel: 0 18px 44px rgba(18, 63, 58, 0.12);
+    --sombra-suave: 0 10px 24px rgba(18, 63, 58, 0.1);
 }
 
 * {
@@ -36,14 +41,26 @@ button {
 html {
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--texto);
-    background: var(--verde-suave);
+    background: var(--fundo);
 }
 
 body {
     min-height: 100vh;
     overflow-x: hidden;
     background:
-        linear-gradient(180deg, var(--verde-claro) 0%, var(--verde-suave) 44%, #fbfffd 100%);
+        linear-gradient(135deg, rgba(223, 247, 239, 0.88), rgba(234, 243, 255, 0.8) 48%, rgba(255, 240, 237, 0.78)),
+        var(--fundo);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(120deg, rgba(36, 155, 132, 0.07) 0 1px, transparent 1px 94px),
+        linear-gradient(30deg, rgba(240, 111, 95, 0.06) 0 1px, transparent 1px 126px);
+    pointer-events: none;
 }
 
 /* HEADER */
@@ -58,8 +75,18 @@ header {
     align-items: center;
     justify-content: center;
     padding: 18px 28px;
-    background: linear-gradient(135deg, var(--verde-profundo), var(--verde-escuro));
+    background: linear-gradient(135deg, var(--verde-profundo), var(--verde-petroleo));
     box-shadow: var(--sombra-header);
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--verde-principal), var(--amarelo), var(--coral));
 }
 
 header h1 {
@@ -86,7 +113,7 @@ aside {
     height: calc(100vh - var(--header-altura));
     padding: 28px 18px;
     overflow-y: auto;
-    background: linear-gradient(180deg, var(--verde-escuro), var(--verde-profundo));
+    background: linear-gradient(180deg, var(--verde-petroleo), var(--verde-profundo));
     border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -94,7 +121,7 @@ aside::before {
     content: "Menu";
     display: block;
     margin: 0 8px 18px;
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.72);
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.14em;
@@ -109,9 +136,11 @@ aside ul {
 }
 
 aside button {
+    position: relative;
     width: 100%;
-    min-height: 50px;
-    padding: 0 16px;
+    min-height: 52px;
+    padding: 0 16px 0 18px;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.08);
@@ -126,6 +155,19 @@ aside button {
         box-shadow 0.22s ease;
 }
 
+aside button::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 0;
+    width: 4px;
+    border-radius: 0 999px 999px 0;
+    background: var(--coral);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+}
+
 aside button:hover {
     transform: translateX(4px);
     background: rgba(255, 255, 255, 0.16);
@@ -133,8 +175,12 @@ aside button:hover {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 }
 
+aside button:hover::before {
+    opacity: 1;
+}
+
 aside button:focus-visible {
-    outline: 3px solid rgba(223, 244, 235, 0.65);
+    outline: 3px solid rgba(245, 200, 91, 0.55);
     outline-offset: 3px;
 }
 
@@ -148,14 +194,26 @@ main {
 
 /* SECTIONS */
 section {
+    position: relative;
     width: min(100%, 980px);
     min-height: 360px;
     margin: 0 auto;
-    padding: 34px;
-    border: 1px solid var(--borda);
+    padding: 38px 34px 34px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: var(--sombra-card);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--sombra-painel);
+}
+
+section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--verde-principal), var(--amarelo), var(--coral));
 }
 
 section h1,
@@ -181,6 +239,10 @@ section p {
     overflow-wrap: break-word;
 }
 
+#inicio p {
+    max-width: 620px;
+}
+
 /* FORM */
 #cadastroPet {
     max-width: 760px;
@@ -199,7 +261,7 @@ section p {
 input,
 select {
     width: 100%;
-    min-height: 46px;
+    min-height: 48px;
     padding: 0 14px;
     border: 1px solid var(--borda-forte);
     border-radius: 8px;
@@ -209,18 +271,20 @@ select {
     transition:
         border-color 0.2s ease,
         box-shadow 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 input::placeholder {
-    color: #8aa09a;
+    color: #8b9a97;
 }
 
 input:focus,
 select:focus {
     border-color: var(--verde-principal);
     background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(31, 143, 111, 0.14);
+    box-shadow: 0 0 0 4px rgba(36, 155, 132, 0.14);
+    transform: translateY(-1px);
 }
 
 select {
@@ -229,15 +293,15 @@ select {
 
 /* BUTTONS */
 main button {
-    min-height: 48px;
+    min-height: 50px;
     margin-top: 24px;
     padding: 0 22px;
     border-radius: 8px;
-    background: linear-gradient(135deg, var(--verde-escuro), var(--verde-principal));
+    background: linear-gradient(135deg, var(--verde-petroleo), var(--verde-principal));
     color: var(--branco);
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 12px 24px rgba(31, 143, 111, 0.24);
+    box-shadow: 0 12px 24px rgba(36, 155, 132, 0.24);
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease,
@@ -246,7 +310,7 @@ main button {
 
 main button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 30px rgba(31, 143, 111, 0.3);
+    box-shadow: 0 16px 30px rgba(36, 155, 132, 0.3);
     filter: brightness(1.04);
 }
 
@@ -255,7 +319,7 @@ main button:active {
 }
 
 main button:focus-visible {
-    outline: 3px solid rgba(31, 143, 111, 0.28);
+    outline: 3px solid rgba(245, 200, 91, 0.55);
     outline-offset: 3px;
 }
 
@@ -299,7 +363,7 @@ main button:focus-visible {
 
     section {
         min-height: 320px;
-        padding: 28px;
+        padding: 34px 28px 28px;
     }
 }
 
@@ -318,7 +382,7 @@ main button:focus-visible {
 
     section {
         min-height: 280px;
-        padding: 22px;
+        padding: 30px 22px 22px;
     }
 
     section h1,
