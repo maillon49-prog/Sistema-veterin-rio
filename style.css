@@ -1,24 +1,26 @@
 /* RESET */
 :root {
-    --verde-900: #0f3d39;
-    --verde-800: #155f5a;
-    --verde-600: #1f9f88;
-    --verde-100: #dff7ef;
-    --azul-100: #eaf3ff;
-    --coral-600: #f06f5f;
-    --coral-100: #fff0ed;
-    --amarelo-500: #f5c85b;
+    --verde-950: #0b3431;
+    --verde-850: #10534e;
+    --verde-650: #1b927f;
+    --verde-500: #35b79f;
+    --menta-150: #dff8f0;
+    --menta-050: #f4fffb;
+    --azul-100: #eaf5ff;
+    --coral-500: #ef7b68;
+    --coral-100: #fff1ee;
+    --ouro-400: #f4c95d;
     --branco: #ffffff;
-    --fundo: #f6fbfa;
+    --fundo: #f5fbf9;
     --campo: #fbfffd;
-    --texto: #183834;
+    --texto: #163632;
     --texto-suave: #687a76;
-    --borda: rgba(21, 95, 90, 0.18);
-    --borda-forte: rgba(21, 95, 90, 0.34);
+    --borda: rgba(16, 83, 78, 0.16);
+    --borda-forte: rgba(16, 83, 78, 0.28);
     --raio: 8px;
-    --sombra-card: 0 24px 58px rgba(15, 61, 57, 0.16);
-    --sombra-suave: 0 12px 30px rgba(15, 61, 57, 0.1);
-    --transicao: 0.18s ease;
+    --sombra-card: 0 28px 64px rgba(11, 52, 49, 0.16);
+    --sombra-baixa: 0 12px 26px rgba(11, 52, 49, 0.1);
+    --transicao: 0.2s ease;
 }
 
 * {
@@ -48,7 +50,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background:
-        linear-gradient(135deg, rgba(223, 247, 239, 0.95), rgba(234, 243, 255, 0.78) 45%, rgba(255, 240, 237, 0.88)),
+        linear-gradient(120deg, rgba(223, 248, 240, 0.96), rgba(234, 245, 255, 0.82) 48%, rgba(255, 241, 238, 0.86)),
         var(--fundo);
 }
 
@@ -63,51 +65,52 @@ body::after {
 
 body::before {
     background:
-        linear-gradient(90deg, rgba(31, 159, 136, 0.08) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(31, 159, 136, 0.06) 1px, transparent 1px);
-    background-size: 86px 86px;
+        linear-gradient(90deg, rgba(27, 146, 127, 0.08) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(27, 146, 127, 0.06) 1px, transparent 1px);
+    background-size: 92px 92px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.86), transparent 86%);
 }
 
 body::after {
     top: auto;
-    height: 26vh;
-    background: linear-gradient(90deg, rgba(21, 95, 90, 0.16), rgba(240, 111, 95, 0.12));
-    clip-path: polygon(0 34%, 100% 0, 100% 100%, 0 100%);
+    height: 30vh;
+    background: linear-gradient(90deg, rgba(11, 52, 49, 0.14), rgba(239, 123, 104, 0.12));
+    clip-path: polygon(0 42%, 100% 10%, 100% 100%, 0 100%);
 }
 
 /* LOGIN */
 .inicial-container {
     min-height: 100vh;
     display: grid;
-    place-items: center;
     align-content: center;
+    justify-items: center;
     gap: 18px;
-    padding: 36px 18px;
+    padding: 40px 18px;
     text-align: center;
 }
 
 .inicial-container::before {
     content: "Amor Vet";
+    min-height: 36px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 36px;
     padding: 0 18px;
-    border: 1px solid rgba(31, 159, 136, 0.24);
+    border: 1px solid rgba(27, 146, 127, 0.25);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.86);
-    color: var(--verde-800);
+    color: var(--verde-850);
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    box-shadow: var(--sombra-suave);
+    box-shadow: var(--sombra-baixa);
 }
 
 h1 {
     width: min(100%, 820px);
-    color: var(--verde-900);
-    font-size: clamp(42px, 7vw, 76px);
+    color: var(--verde-950);
+    font-size: clamp(42px, 7vw, 74px);
     font-weight: 850;
     line-height: 1;
     letter-spacing: 0;
@@ -117,21 +120,21 @@ h1 {
 h1::after {
     content: "";
     display: block;
-    width: 84px;
+    width: 88px;
     height: 5px;
     margin: 18px auto 0;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--verde-600), var(--amarelo-500), var(--coral-600));
+    background: linear-gradient(90deg, var(--verde-500), var(--ouro-400), var(--coral-500));
 }
 
 .inicial-container > p {
     width: min(100%, 560px);
     color: var(--texto-suave);
-    font-size: clamp(18px, 2.4vw, 23px);
+    font-size: clamp(18px, 2.3vw, 22px);
     line-height: 1.45;
 }
 
-/* FORMULARIO */
+/* CARD DE ACESSO */
 .form-container {
     position: relative;
     isolation: isolate;
@@ -140,22 +143,22 @@ h1::after {
     display: grid;
     gap: 14px;
     margin-top: 18px;
-    padding: 38px 30px 30px;
+    padding: 40px 30px 30px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.86);
     border-radius: var(--raio);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 255, 252, 0.96));
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(244, 255, 251, 0.97)),
+        var(--branco);
     box-shadow: var(--sombra-card);
 }
 
 .form-container::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, var(--verde-600), var(--amarelo-500), var(--coral-600));
+    inset: 0 0 auto;
+    height: 7px;
+    background: linear-gradient(90deg, var(--verde-500), var(--ouro-400), var(--coral-500));
 }
 
 .form-container::after {
@@ -163,15 +166,15 @@ h1::after {
     position: absolute;
     top: 22px;
     right: 22px;
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgba(31, 159, 136, 0.18);
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(27, 146, 127, 0.18);
     border-radius: var(--raio);
     background:
-        linear-gradient(var(--verde-600), var(--verde-600)) center / 22px 5px no-repeat,
-        linear-gradient(var(--verde-600), var(--verde-600)) center / 5px 22px no-repeat,
-        rgba(223, 247, 239, 0.7);
-    opacity: 0.72;
+        linear-gradient(var(--verde-650), var(--verde-650)) center / 23px 5px no-repeat,
+        linear-gradient(var(--verde-650), var(--verde-650)) center / 5px 23px no-repeat,
+        rgba(223, 248, 240, 0.78);
+    opacity: 0.82;
     z-index: 0;
 }
 
@@ -201,28 +204,28 @@ h1::after {
 
 .senhaAdmin {
     margin-top: 4px;
-    border-color: rgba(240, 111, 95, 0.35);
+    border-color: rgba(239, 123, 104, 0.36);
     background: var(--coral-100);
 }
 
 .inputUsuario::placeholder,
 .inputSenha::placeholder,
 .senhaAdmin::placeholder {
-    color: #899b97;
+    color: #879895;
 }
 
 .inputUsuario:focus,
 .inputSenha:focus,
 .senhaAdmin:focus {
-    border-color: var(--verde-600);
+    border-color: var(--verde-500);
     background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(31, 159, 136, 0.14);
+    box-shadow: 0 0 0 4px rgba(53, 183, 159, 0.16);
     transform: translateY(-1px);
 }
 
 .senhaAdmin:focus {
-    border-color: var(--coral-600);
-    box-shadow: 0 0 0 4px rgba(240, 111, 95, 0.16);
+    border-color: var(--coral-500);
+    box-shadow: 0 0 0 4px rgba(239, 123, 104, 0.16);
 }
 
 /* BOTOES */
@@ -244,16 +247,16 @@ h1::after {
 .btnLogin {
     margin-top: 4px;
     border: 0;
-    background: linear-gradient(135deg, var(--verde-800), var(--verde-600));
+    background: linear-gradient(135deg, var(--verde-850), var(--verde-500));
     color: var(--branco);
-    box-shadow: 0 14px 28px rgba(31, 159, 136, 0.28);
+    box-shadow: 0 14px 28px rgba(27, 146, 127, 0.28);
 }
 
 .btnCadastro {
-    border: 1px solid rgba(240, 111, 95, 0.42);
+    border: 1px solid rgba(239, 123, 104, 0.44);
     background: var(--branco);
-    color: var(--coral-600);
-    box-shadow: 0 10px 22px rgba(240, 111, 95, 0.1);
+    color: var(--coral-500);
+    box-shadow: 0 10px 22px rgba(239, 123, 104, 0.1);
 }
 
 .btnLogin:hover,
@@ -263,13 +266,13 @@ h1::after {
 }
 
 .btnLogin:hover {
-    box-shadow: 0 18px 34px rgba(31, 159, 136, 0.34);
+    box-shadow: 0 18px 34px rgba(27, 146, 127, 0.34);
 }
 
 .btnCadastro:hover {
-    border-color: var(--coral-600);
+    border-color: var(--coral-500);
     background: var(--coral-100);
-    box-shadow: 0 16px 30px rgba(240, 111, 95, 0.16);
+    box-shadow: 0 16px 30px rgba(239, 123, 104, 0.16);
 }
 
 .btnLogin:active,
@@ -279,12 +282,12 @@ h1::after {
 
 .btnLogin:focus-visible,
 .btnCadastro:focus-visible {
-    outline: 4px solid rgba(31, 159, 136, 0.24);
+    outline: 4px solid rgba(53, 183, 159, 0.24);
     outline-offset: 3px;
 }
 
 .btnCadastro:focus-visible {
-    outline-color: rgba(240, 111, 95, 0.25);
+    outline-color: rgba(239, 123, 104, 0.25);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -301,7 +304,7 @@ h1::after {
     .inicial-container {
         align-items: stretch;
         justify-content: start;
-        padding-top: 64px;
+        padding-top: 62px;
     }
 
     .inicial-container::before {
@@ -322,6 +325,6 @@ h1::after {
     }
 
     .form-container {
-        padding: 34px 22px 22px;
+        padding: 36px 22px 22px;
     }
 }
