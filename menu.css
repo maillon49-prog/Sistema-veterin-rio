@@ -1,18 +1,26 @@
 :root {
-    --verde-escuro: #17413b;
-    --verde: #2f8f78;
-    --verde-claro: #dff5ee;
-    --azul-claro: #eef8ff;
-    --coral: #f08a74;
-    --texto: #223330;
-    --texto-claro: #63726f;
+    --verde-950: #102f2b;
+    --verde-850: #17413b;
+    --verde-700: #237763;
+    --verde-500: #36a68c;
+    --menta-100: #e5f7f1;
+    --azul-100: #edf7ff;
+    --coral-500: #eb7c68;
+    --coral-100: #fff0ec;
+    --amarelo-100: #fff8df;
+    --texto: #1d302c;
+    --texto-suave: #657873;
     --branco: #ffffff;
-    --borda: #cfe2dc;
-    --sombra: 0 16px 38px rgba(23, 65, 59, 0.14);
+    --linha: #cfe2dc;
+    --sombra: 0 18px 42px rgba(18, 59, 53, 0.14);
 }
 
 * {
     box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
 }
 
 body {
@@ -20,7 +28,9 @@ body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--texto);
-    background: linear-gradient(135deg, var(--verde-claro), var(--azul-claro) 55%, #fff2ee);
+    background:
+        linear-gradient(135deg, rgba(229, 247, 241, 0.96), rgba(237, 247, 255, 0.9) 56%, rgba(255, 240, 236, 0.92)),
+        #f6fbf9;
 }
 
 button,
@@ -36,28 +46,29 @@ button {
 .menu-container {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 270px 1fr;
     grid-template-rows: auto 1fr;
 }
 
 header {
     grid-column: 1 / -1;
-    padding: 24px 28px;
-    background: var(--verde-escuro);
+    padding: 24px 30px;
+    background: linear-gradient(135deg, var(--verde-950), var(--verde-850));
     color: var(--branco);
-    box-shadow: 0 8px 22px rgba(23, 65, 59, 0.22);
+    box-shadow: 0 10px 24px rgba(18, 59, 53, 0.24);
 }
 
 header h1 {
     margin: 0;
-    font-size: 30px;
+    font-size: 32px;
     line-height: 1.2;
     text-align: center;
+    letter-spacing: 0;
 }
 
 aside {
     padding: 24px 18px;
-    background: rgba(23, 65, 59, 0.96);
+    background: rgba(16, 47, 43, 0.97);
 }
 
 aside ul {
@@ -71,79 +82,88 @@ aside ul {
 
 aside button {
     width: 100%;
-    min-height: 50px;
-    padding: 0 14px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    min-height: 52px;
+    padding: 0 15px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.09);
     color: var(--branco);
     font-weight: 700;
     text-align: left;
     transition: 0.2s ease;
 }
 
-aside button:hover {
-    background: var(--verde);
-    border-color: var(--verde);
+aside button:hover,
+aside button:focus-visible {
+    background: var(--verde-700);
+    border-color: rgba(255, 255, 255, 0.32);
     transform: translateX(4px);
 }
 
-#limparConsultaPets {
-    border-color: rgba(240, 138, 116, 0.55);
-    background: rgba(240, 138, 116, 0.16);
+aside button:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.24);
+    outline-offset: 3px;
 }
 
-#limparConsultaPets:hover {
-    background: var(--coral);
-    border-color: var(--coral);
+#limparConsultaPets {
+    border-color: rgba(235, 124, 104, 0.55);
+    background: rgba(235, 124, 104, 0.14);
+}
+
+#limparConsultaPets:hover,
+#limparConsultaPets:focus-visible {
+    background: var(--coral-500);
+    border-color: var(--coral-500);
 }
 
 main {
-    padding: 34px;
+    padding: 36px;
 }
 
 section {
     width: 100%;
-    max-width: 900px;
+    max-width: 940px;
     min-height: 320px;
     margin: 0 auto;
-    padding: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.88);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255, 255, 255, 0.96);
     box-shadow: var(--sombra);
 }
 
 section h1,
 section h2 {
     margin: 0 0 14px;
-    color: var(--verde-escuro);
+    color: var(--verde-950);
     line-height: 1.2;
+    letter-spacing: 0;
 }
 
 section h1 {
-    font-size: 36px;
+    max-width: 680px;
+    font-size: 38px;
 }
 
 section h2 {
-    font-size: 30px;
+    font-size: 31px;
 }
 
 section p {
     margin: 14px 0 0;
-    color: var(--texto-claro);
+    color: var(--texto-suave);
     font-size: 17px;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
 #inicio > p,
 #ConsultarPets > p,
 #EstoqueRemedios > p {
-    max-width: 620px;
+    max-width: 640px;
     padding: 14px 16px;
-    border: 1px solid var(--borda);
+    border: 1px solid var(--linha);
     border-radius: 8px;
-    background: #f8fffc;
+    background: #fbfffd;
 }
 
 #cadastroPet,
@@ -153,20 +173,26 @@ section p {
 }
 
 #cadastroPet {
-    max-width: 760px;
+    max-width: 780px;
 }
 
 #cadastroPet > p:first-of-type {
-    margin-bottom: 22px;
-    color: var(--verde);
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    border: 1px solid rgba(54, 166, 140, 0.22);
+    border-radius: 8px;
+    background: var(--menta-100);
+    color: var(--verde-700);
     font-weight: 700;
 }
 
 #cadastroPet > p:not(:first-of-type) {
     display: grid;
-    grid-template-columns: 90px 1fr;
+    grid-template-columns: 96px 1fr;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    margin-top: 15px;
     color: var(--texto);
     font-weight: 700;
 }
@@ -174,44 +200,58 @@ section p {
 input,
 select {
     width: 100%;
-    min-height: 46px;
-    padding: 0 13px;
-    border: 1px solid var(--borda);
+    min-height: 48px;
+    padding: 0 14px;
+    border: 1px solid var(--linha);
     border-radius: 8px;
     outline: none;
-    background: var(--branco);
+    background: #fbfffd;
     color: var(--texto);
+    transition: 0.2s ease;
+}
+
+input:hover,
+select:hover {
+    border-color: rgba(35, 119, 99, 0.45);
 }
 
 input:focus,
 select:focus {
-    border-color: var(--verde);
-    box-shadow: 0 0 0 4px rgba(47, 143, 120, 0.16);
+    border-color: var(--verde-500);
+    background: var(--branco);
+    box-shadow: 0 0 0 4px rgba(54, 166, 140, 0.16);
 }
 
-.bntCadastrarPet {
-    width: 100%;
-    max-width: 260px;
+.bntCadastrarPet,
+#botaoConsultarPets {
+    min-width: 210px;
 }
 
 #listaPets {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 16px;
     margin-top: 24px;
 }
 
+#listaPets:empty {
+    min-height: 80px;
+    border: 1px dashed var(--linha);
+    border-radius: 8px;
+    background: rgba(251, 255, 253, 0.7);
+}
+
 .pet-card {
     padding: 18px;
-    border: 1px solid var(--borda);
+    border: 1px solid var(--linha);
     border-radius: 8px;
-    background: #f8fffc;
-    box-shadow: 0 10px 22px rgba(23, 65, 59, 0.08);
+    background: #fbfffd;
+    box-shadow: 0 10px 22px rgba(18, 59, 53, 0.08);
 }
 
 .pet-card h3 {
     margin: 0 0 12px;
-    color: var(--verde-escuro);
+    color: var(--verde-950);
     font-size: 22px;
     line-height: 1.2;
 }
@@ -226,26 +266,35 @@ select:focus {
 .pet-card hr {
     margin: 16px 0 0;
     border: 0;
-    border-top: 1px solid var(--borda);
+    border-top: 1px solid var(--linha);
 }
 
 main button {
-    min-height: 48px;
+    min-height: 50px;
     margin-top: 22px;
-    padding: 0 20px;
-    border: 1px solid var(--verde);
+    padding: 0 22px;
+    border: 1px solid var(--verde-700);
     border-radius: 8px;
-    background: var(--verde);
+    background: linear-gradient(135deg, var(--verde-700), var(--verde-500));
     color: var(--branco);
     font-weight: 700;
-    box-shadow: 0 12px 24px rgba(47, 143, 120, 0.24);
+    box-shadow: 0 12px 24px rgba(35, 119, 99, 0.22);
     transition: 0.2s ease;
 }
 
 main button:hover {
-    background: var(--verde-escuro);
-    border-color: var(--verde-escuro);
+    background: linear-gradient(135deg, var(--verde-950), var(--verde-700));
+    border-color: var(--verde-950);
     transform: translateY(-2px);
+}
+
+main button:active {
+    transform: translateY(0);
+}
+
+main button:focus-visible {
+    outline: 3px solid rgba(54, 166, 140, 0.26);
+    outline-offset: 3px;
 }
 
 @media (max-width: 800px) {
@@ -258,7 +307,7 @@ main button:hover {
     }
 
     header h1 {
-        font-size: 26px;
+        font-size: 27px;
     }
 
     aside {
@@ -269,7 +318,8 @@ main button:hover {
         gap: 10px;
     }
 
-    aside button:hover {
+    aside button:hover,
+    aside button:focus-visible {
         transform: none;
     }
 
@@ -280,7 +330,6 @@ main button:hover {
     section {
         min-height: 260px;
         padding: 24px;
-        border-radius: 8px;
     }
 
     section h1 {
@@ -291,17 +340,19 @@ main button:hover {
         font-size: 26px;
     }
 
+    #cadastroPet > p:first-of-type {
+        display: block;
+    }
+
     #cadastroPet > p:not(:first-of-type) {
         grid-template-columns: 1fr;
         gap: 8px;
     }
 
-    main button {
+    main button,
+    .bntCadastrarPet,
+    #botaoConsultarPets {
         width: 100%;
-    }
-
-    .bntCadastrarPet {
-        max-width: none;
     }
 
     #listaPets {
