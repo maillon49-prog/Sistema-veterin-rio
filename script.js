@@ -1,8 +1,5 @@
 const Nome_do_Usuario = document.getElementById("nomeUsuario");
 const senha_do_Usuario = document.getElementById("senhaUsuario");
-const senha_do_Admin = document.getElementById("senhaAdmin");
-
-const senha_para_cadastro = "molinon"; // Defina a senha do administrador aqui
 
 const botaoLogin = document.getElementById("botaoLogin");
 const botaoCadastro = document.getElementById("botaoCadastro");
@@ -26,10 +23,6 @@ botaoLogin.addEventListener("click", function() {
 
 
 botaoCadastro.addEventListener("click", function() {
-    if (senha_do_Admin.value !== senha_para_cadastro) {
-        alert("Senha do administrador incorreta.");
-        return;
-    }
     {
     for (let i = 0; i < usuarios.length; i++) {
         if (Nome_do_Usuario.value === usuarios[i].perfil &&
@@ -49,3 +42,4 @@ botaoCadastro.addEventListener("click", function() {
 
     alert("Cadastro realizado com sucesso! Agora você pode fazer login.");
 })
+

@@ -1,32 +1,26 @@
-/* RESET */
 :root {
-    --verde-950: #0b3431;
-    --verde-850: #10534e;
-    --verde-650: #1b927f;
-    --verde-500: #35b79f;
-    --menta-150: #dff8f0;
-    --menta-050: #f4fffb;
-    --azul-100: #eaf5ff;
-    --coral-500: #ef7b68;
-    --coral-100: #fff1ee;
-    --ouro-400: #f4c95d;
+    --verde-escuro: #17413b;
+    --verde: #2f8f78;
+    --verde-claro: #dff5ee;
+    --azul-claro: #eef8ff;
+    --coral: #f08a74;
+    --texto: #223330;
+    --texto-claro: #63726f;
     --branco: #ffffff;
-    --fundo: #f5fbf9;
-    --campo: #fbfffd;
-    --texto: #163632;
-    --texto-suave: #687a76;
-    --borda: rgba(16, 83, 78, 0.16);
-    --borda-forte: rgba(16, 83, 78, 0.28);
-    --raio: 8px;
-    --sombra-card: 0 28px 64px rgba(11, 52, 49, 0.16);
-    --sombra-baixa: 0 12px 26px rgba(11, 52, 49, 0.1);
-    --transicao: 0.2s ease;
+    --borda: #cfe2dc;
+    --sombra: 0 18px 45px rgba(23, 65, 59, 0.16);
 }
 
 * {
     box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--texto);
+    background: linear-gradient(135deg, var(--verde-claro), var(--azul-claro) 55%, #fff2ee);
 }
 
 button,
@@ -38,293 +32,113 @@ button {
     cursor: pointer;
 }
 
-/* BASE */
-html {
-    min-height: 100%;
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: var(--texto);
-    background: var(--fundo);
-}
-
-body {
-    min-height: 100vh;
-    overflow-x: hidden;
-    background:
-        linear-gradient(120deg, rgba(223, 248, 240, 0.96), rgba(234, 245, 255, 0.82) 48%, rgba(255, 241, 238, 0.86)),
-        var(--fundo);
-}
-
-body::before,
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-}
-
-body::before {
-    background:
-        linear-gradient(90deg, rgba(27, 146, 127, 0.08) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(27, 146, 127, 0.06) 1px, transparent 1px);
-    background-size: 92px 92px;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.86), transparent 86%);
-}
-
-body::after {
-    top: auto;
-    height: 30vh;
-    background: linear-gradient(90deg, rgba(11, 52, 49, 0.14), rgba(239, 123, 104, 0.12));
-    clip-path: polygon(0 42%, 100% 10%, 100% 100%, 0 100%);
-}
-
-/* LOGIN */
 .inicial-container {
     min-height: 100vh;
-    display: grid;
-    align-content: center;
-    justify-items: center;
-    gap: 18px;
-    padding: 40px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
     text-align: center;
 }
 
-.inicial-container::before {
-    content: "Amor Vet";
-    min-height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 18px;
-    border: 1px solid rgba(27, 146, 127, 0.25);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.86);
-    color: var(--verde-850);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    box-shadow: var(--sombra-baixa);
+.inicial-container h1 {
+    margin: 0;
+    color: var(--verde-escuro);
+    font-size: 48px;
+    line-height: 1.1;
 }
 
-h1 {
-    width: min(100%, 820px);
-    color: var(--verde-950);
-    font-size: clamp(42px, 7vw, 74px);
-    font-weight: 850;
-    line-height: 1;
-    letter-spacing: 0;
-    overflow-wrap: break-word;
+.inicial-container p {
+    margin: 14px 0 0;
+    color: var(--texto-claro);
+    font-size: 20px;
 }
 
-h1::after {
-    content: "";
-    display: block;
-    width: 88px;
-    height: 5px;
-    margin: 18px auto 0;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--verde-500), var(--ouro-400), var(--coral-500));
-}
-
-.inicial-container > p {
-    width: min(100%, 560px);
-    color: var(--texto-suave);
-    font-size: clamp(18px, 2.3vw, 22px);
-    line-height: 1.45;
-}
-
-/* CARD DE ACESSO */
 .form-container {
-    position: relative;
-    isolation: isolate;
     width: 100%;
-    max-width: 440px;
-    display: grid;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
     gap: 14px;
-    margin-top: 18px;
-    padding: 40px 30px 30px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.86);
-    border-radius: var(--raio);
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(244, 255, 251, 0.97)),
-        var(--branco);
-    box-shadow: var(--sombra-card);
-}
-
-.form-container::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto;
-    height: 7px;
-    background: linear-gradient(90deg, var(--verde-500), var(--ouro-400), var(--coral-500));
-}
-
-.form-container::after {
-    content: "";
-    position: absolute;
-    top: 22px;
-    right: 22px;
-    width: 46px;
-    height: 46px;
-    border: 1px solid rgba(27, 146, 127, 0.18);
-    border-radius: var(--raio);
-    background:
-        linear-gradient(var(--verde-650), var(--verde-650)) center / 23px 5px no-repeat,
-        linear-gradient(var(--verde-650), var(--verde-650)) center / 5px 23px no-repeat,
-        rgba(223, 248, 240, 0.78);
-    opacity: 0.82;
-    z-index: 0;
-}
-
-.form-container > * {
-    position: relative;
-    z-index: 1;
+    margin-top: 28px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: var(--sombra);
 }
 
 .inputUsuario,
-.inputSenha,
-.senhaAdmin {
+.inputSenha {
     width: 100%;
-    min-height: 52px;
-    padding: 0 16px;
+    min-height: 50px;
+    padding: 0 15px;
     border: 1px solid var(--borda);
-    border-radius: var(--raio);
+    border-radius: 8px;
     outline: none;
-    background: var(--campo);
+    background: var(--branco);
     color: var(--texto);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    transition:
-        border-color var(--transicao),
-        box-shadow var(--transicao),
-        background var(--transicao),
-        transform var(--transicao);
-}
-
-.senhaAdmin {
-    margin-top: 4px;
-    border-color: rgba(239, 123, 104, 0.36);
-    background: var(--coral-100);
-}
-
-.inputUsuario::placeholder,
-.inputSenha::placeholder,
-.senhaAdmin::placeholder {
-    color: #879895;
 }
 
 .inputUsuario:focus,
-.inputSenha:focus,
-.senhaAdmin:focus {
-    border-color: var(--verde-500);
-    background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(53, 183, 159, 0.16);
-    transform: translateY(-1px);
+.inputSenha:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 4px rgba(47, 143, 120, 0.16);
 }
 
-.senhaAdmin:focus {
-    border-color: var(--coral-500);
-    box-shadow: 0 0 0 4px rgba(239, 123, 104, 0.16);
-}
-
-/* BOTOES */
 .btnLogin,
 .btnCadastro {
     width: 100%;
-    min-height: 52px;
-    border-radius: var(--raio);
-    font-weight: 800;
-    letter-spacing: 0;
-    transition:
-        transform var(--transicao),
-        box-shadow var(--transicao),
-        filter var(--transicao),
-        border-color var(--transicao),
-        background var(--transicao);
+    min-height: 50px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: 0.2s ease;
 }
 
 .btnLogin {
     margin-top: 4px;
-    border: 0;
-    background: linear-gradient(135deg, var(--verde-850), var(--verde-500));
+    border: 1px solid var(--verde);
+    background: var(--verde);
     color: var(--branco);
-    box-shadow: 0 14px 28px rgba(27, 146, 127, 0.28);
+    box-shadow: 0 12px 24px rgba(47, 143, 120, 0.25);
 }
 
 .btnCadastro {
-    border: 1px solid rgba(239, 123, 104, 0.44);
+    border: 1px solid var(--coral);
     background: var(--branco);
-    color: var(--coral-500);
-    box-shadow: 0 10px 22px rgba(239, 123, 104, 0.1);
+    color: var(--coral);
 }
 
 .btnLogin:hover,
 .btnCadastro:hover {
     transform: translateY(-2px);
-    filter: brightness(1.03);
 }
 
 .btnLogin:hover {
-    box-shadow: 0 18px 34px rgba(27, 146, 127, 0.34);
+    background: var(--verde-escuro);
+    border-color: var(--verde-escuro);
 }
 
 .btnCadastro:hover {
-    border-color: var(--coral-500);
-    background: var(--coral-100);
-    box-shadow: 0 16px 30px rgba(239, 123, 104, 0.16);
+    background: #fff2ee;
 }
 
-.btnLogin:active,
-.btnCadastro:active {
-    transform: translateY(0);
-}
-
-.btnLogin:focus-visible,
-.btnCadastro:focus-visible {
-    outline: 4px solid rgba(53, 183, 159, 0.24);
-    outline-offset: 3px;
-}
-
-.btnCadastro:focus-visible {
-    outline-color: rgba(239, 123, 104, 0.25);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto;
-        transition-duration: 0.01ms;
-    }
-}
-
-/* RESPONSIVO */
 @media (max-width: 520px) {
     .inicial-container {
-        align-items: stretch;
-        justify-content: start;
-        padding-top: 62px;
+        padding: 24px 16px;
     }
 
-    .inicial-container::before {
-        justify-self: center;
+    .inicial-container h1 {
+        font-size: 36px;
     }
 
-    h1 {
-        justify-self: center;
-        width: min(calc(100vw - 36px), 10ch);
-        font-size: clamp(34px, 12vw, 46px);
-        line-height: 1.05;
-    }
-
-    .inicial-container > p,
-    .form-container {
-        width: calc(100vw - 36px);
-        max-width: 440px;
+    .inicial-container p {
+        font-size: 18px;
     }
 
     .form-container {
-        padding: 36px 22px 22px;
+        padding: 24px;
+        border-radius: 8px;
     }
 }

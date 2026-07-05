@@ -1,34 +1,26 @@
-/* RESET */
 :root {
-    --header-altura: 82px;
-    --menu-largura: 280px;
-    --verde-950: #0b3431;
-    --verde-850: #10534e;
-    --verde-650: #1b927f;
-    --verde-500: #35b79f;
-    --menta-150: #dff8f0;
-    --menta-050: #f4fffb;
-    --azul-100: #eaf5ff;
-    --coral-500: #ef7b68;
-    --coral-100: #fff1ee;
-    --ouro-400: #f4c95d;
+    --verde-escuro: #17413b;
+    --verde: #2f8f78;
+    --verde-claro: #dff5ee;
+    --azul-claro: #eef8ff;
+    --coral: #f08a74;
+    --texto: #223330;
+    --texto-claro: #63726f;
     --branco: #ffffff;
-    --fundo: #f5fbf9;
-    --campo: #fbfffd;
-    --texto: #163632;
-    --texto-suave: #687a76;
-    --borda: rgba(16, 83, 78, 0.16);
-    --borda-forte: rgba(16, 83, 78, 0.28);
-    --raio: 8px;
-    --sombra-header: 0 10px 26px rgba(11, 52, 49, 0.22);
-    --sombra-painel: 0 20px 46px rgba(11, 52, 49, 0.12);
-    --transicao: 0.2s ease;
+    --borda: #cfe2dc;
+    --sombra: 0 16px 38px rgba(23, 65, 59, 0.14);
 }
 
 * {
     box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--texto);
+    background: linear-gradient(135deg, var(--verde-claro), var(--azul-claro) 55%, #fff2ee);
 }
 
 button,
@@ -38,467 +30,265 @@ select {
 }
 
 button {
-    border: 0;
     cursor: pointer;
 }
 
-/* BASE */
-html {
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: var(--texto);
-    background: var(--fundo);
-}
-
-body {
+.menu-container {
     min-height: 100vh;
-    overflow-x: hidden;
-    background:
-        linear-gradient(120deg, rgba(223, 248, 240, 0.94), rgba(234, 245, 255, 0.84) 46%, rgba(255, 241, 238, 0.82)),
-        var(--fundo);
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    grid-template-rows: auto 1fr;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background:
-        linear-gradient(90deg, rgba(27, 146, 127, 0.07) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(27, 146, 127, 0.05) 1px, transparent 1px);
-    background-size: 92px 92px;
-    pointer-events: none;
-}
-
-/* CABECALHO */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 20;
-    width: 100%;
-    min-height: var(--header-altura);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px 28px;
-    background: linear-gradient(135deg, var(--verde-950), var(--verde-850));
-    box-shadow: var(--sombra-header);
-}
-
-header::before {
-    content: "";
-    position: absolute;
-    left: 28px;
-    width: 38px;
-    height: 38px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: var(--raio);
-    background:
-        linear-gradient(var(--branco), var(--branco)) center / 20px 5px no-repeat,
-        linear-gradient(var(--branco), var(--branco)) center / 5px 20px no-repeat,
-        rgba(255, 255, 255, 0.12);
-}
-
-header::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--verde-500), var(--ouro-400), var(--coral-500));
+    grid-column: 1 / -1;
+    padding: 24px 28px;
+    background: var(--verde-escuro);
+    color: var(--branco);
+    box-shadow: 0 8px 22px rgba(23, 65, 59, 0.22);
 }
 
 header h1 {
-    color: var(--branco);
-    font-size: clamp(24px, 3vw, 36px);
-    font-weight: 850;
-    line-height: 1.15;
+    margin: 0;
+    font-size: 30px;
+    line-height: 1.2;
     text-align: center;
-    letter-spacing: 0;
-}
-
-/* LAYOUT */
-.menu-container {
-    min-height: 100vh;
 }
 
 aside {
-    position: fixed;
-    top: var(--header-altura);
-    left: 0;
-    z-index: 10;
-    width: var(--menu-largura);
-    height: calc(100vh - var(--header-altura));
-    padding: 28px 18px;
-    overflow-y: auto;
-    background:
-        linear-gradient(180deg, rgba(16, 83, 78, 0.96), rgba(11, 52, 49, 0.98)),
-        var(--verde-950);
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-aside::before {
-    content: "Painel da Clinica";
-    display: block;
-    margin: 0 8px 18px;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    padding: 24px 18px;
+    background: rgba(23, 65, 59, 0.96);
 }
 
 aside ul {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
+    margin: 0;
+    padding: 0;
     list-style: none;
 }
 
 aside button {
-    position: relative;
     width: 100%;
-    min-height: 54px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 0 14px 0 18px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    border-radius: var(--raio);
-    background: rgba(255, 255, 255, 0.08);
+    min-height: 50px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
     color: var(--branco);
-    font-weight: 800;
+    font-weight: 700;
     text-align: left;
-    transition:
-        background var(--transicao),
-        border-color var(--transicao),
-        transform var(--transicao),
-        box-shadow var(--transicao);
+    transition: 0.2s ease;
 }
 
-aside button::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    bottom: 12px;
-    left: 0;
-    width: 4px;
-    border-radius: 0 999px 999px 0;
-    background: var(--coral-500);
-    opacity: 0;
-    transition: opacity var(--transicao);
-}
-
-aside button::after {
-    min-width: 30px;
-    padding: 4px 7px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.78);
-    font-size: 11px;
-    font-weight: 800;
-    text-align: center;
-}
-
-aside li:nth-child(1) button::after {
-    content: "01";
-}
-
-aside li:nth-child(2) button::after {
-    content: "02";
-}
-
-aside li:nth-child(3) button::after {
-    content: "03";
-}
-
-aside button:hover,
-aside button:focus-visible {
+aside button:hover {
+    background: var(--verde);
+    border-color: var(--verde);
     transform: translateX(4px);
-    background: rgba(255, 255, 255, 0.16);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 }
 
-aside button:hover::before,
-aside button:focus-visible::before {
-    opacity: 1;
+#limparConsultaPets {
+    border-color: rgba(240, 138, 116, 0.55);
+    background: rgba(240, 138, 116, 0.16);
 }
 
-aside button:focus-visible {
-    outline: 3px solid rgba(244, 201, 93, 0.55);
-    outline-offset: 3px;
+#limparConsultaPets:hover {
+    background: var(--coral);
+    border-color: var(--coral);
 }
 
 main {
-    min-height: 100vh;
-    margin-left: var(--menu-largura);
-    padding: calc(var(--header-altura) + 34px) 34px 34px;
-    background: transparent;
+    padding: 34px;
 }
 
-/* PAINEIS */
 section {
-    position: relative;
-    isolation: isolate;
-    width: min(100%, 980px);
-    min-height: 360px;
+    width: 100%;
+    max-width: 900px;
+    min-height: 320px;
     margin: 0 auto;
-    padding: 40px 34px 34px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.86);
-    border-radius: var(--raio);
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(244, 255, 251, 0.97)),
-        var(--branco);
-    box-shadow: var(--sombra-painel);
-}
-
-section::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto;
-    height: 7px;
-    background: linear-gradient(90deg, var(--verde-500), var(--ouro-400), var(--coral-500));
-}
-
-section::after {
-    content: "";
-    position: absolute;
-    right: 28px;
-    bottom: 28px;
-    width: 96px;
-    height: 96px;
-    border-radius: var(--raio);
-    background:
-        linear-gradient(var(--verde-650), var(--verde-650)) center / 48px 10px no-repeat,
-        linear-gradient(var(--verde-650), var(--verde-650)) center / 10px 48px no-repeat;
-    opacity: 0.05;
-    z-index: 0;
-}
-
-section > * {
-    position: relative;
-    z-index: 1;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--sombra);
 }
 
 section h1,
 section h2 {
-    margin-bottom: 14px;
-    color: var(--verde-950);
-    font-size: clamp(28px, 3.3vw, 42px);
-    font-weight: 850;
-    line-height: 1.15;
-    letter-spacing: 0;
-    overflow-wrap: break-word;
+    margin: 0 0 14px;
+    color: var(--verde-escuro);
+    line-height: 1.2;
+}
+
+section h1 {
+    font-size: 36px;
 }
 
 section h2 {
-    font-size: clamp(24px, 2.5vw, 34px);
+    font-size: 30px;
 }
 
 section p {
-    margin-top: 14px;
-    color: var(--texto-suave);
+    margin: 14px 0 0;
+    color: var(--texto-claro);
     font-size: 17px;
-    line-height: 1.55;
-    overflow-wrap: break-word;
+    line-height: 1.5;
 }
 
-#inicio p,
-#ConsultarPets p,
-#EstoqueRemedios p {
+#inicio > p,
+#ConsultarPets > p,
+#EstoqueRemedios > p {
     max-width: 620px;
     padding: 14px 16px;
     border: 1px solid var(--borda);
-    border-left: 4px solid var(--ouro-400);
-    border-radius: var(--raio);
-    background: rgba(255, 255, 255, 0.72);
+    border-radius: 8px;
+    background: #f8fffc;
 }
 
-/* FORMULARIO */
+#cadastroPet,
+#ConsultarPets,
+#EstoqueRemedios {
+    display: none;
+}
+
 #cadastroPet {
     max-width: 760px;
 }
 
 #cadastroPet > p:first-of-type {
-    display: inline-flex;
-    width: auto;
-    padding: 9px 14px;
-    border: 1px solid rgba(27, 146, 127, 0.22);
-    border-radius: 999px;
-    background: var(--menta-150);
-    color: var(--verde-850);
-    font-size: 15px;
-    font-weight: 800;
+    margin-bottom: 22px;
+    color: var(--verde);
+    font-weight: 700;
 }
 
 #cadastroPet > p:not(:first-of-type) {
     display: grid;
-    grid-template-columns: 96px minmax(0, 1fr);
+    grid-template-columns: 90px 1fr;
     align-items: center;
-    gap: 14px;
-    margin-top: 16px;
+    gap: 12px;
     color: var(--texto);
-    font-weight: 800;
-}
-
-#cadastroPet > p:not(:first-of-type):focus-within {
-    color: var(--verde-850);
+    font-weight: 700;
 }
 
 input,
 select {
     width: 100%;
-    min-height: 48px;
-    padding: 0 14px;
-    border: 1px solid var(--borda-forte);
-    border-radius: var(--raio);
+    min-height: 46px;
+    padding: 0 13px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
     outline: none;
-    background: var(--campo);
+    background: var(--branco);
     color: var(--texto);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    transition:
-        border-color var(--transicao),
-        box-shadow var(--transicao),
-        background var(--transicao),
-        transform var(--transicao);
-}
-
-input::placeholder {
-    color: #879895;
 }
 
 input:focus,
 select:focus {
-    border-color: var(--verde-500);
-    background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(53, 183, 159, 0.16);
-    transform: translateY(-1px);
+    border-color: var(--verde);
+    box-shadow: 0 0 0 4px rgba(47, 143, 120, 0.16);
 }
 
-select {
-    cursor: pointer;
+.bntCadastrarPet {
+    width: 100%;
+    max-width: 260px;
 }
 
-/* BOTOES */
-main button {
-    min-height: 50px;
+#listaPets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
     margin-top: 24px;
-    padding: 0 22px;
-    border-radius: var(--raio);
-    background: linear-gradient(135deg, var(--verde-850), var(--verde-500));
+}
+
+.pet-card {
+    padding: 18px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    background: #f8fffc;
+    box-shadow: 0 10px 22px rgba(23, 65, 59, 0.08);
+}
+
+.pet-card h3 {
+    margin: 0 0 12px;
+    color: var(--verde-escuro);
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.pet-card p {
+    margin: 8px 0;
+    color: var(--texto);
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.pet-card hr {
+    margin: 16px 0 0;
+    border: 0;
+    border-top: 1px solid var(--borda);
+}
+
+main button {
+    min-height: 48px;
+    margin-top: 22px;
+    padding: 0 20px;
+    border: 1px solid var(--verde);
+    border-radius: 8px;
+    background: var(--verde);
     color: var(--branco);
-    font-weight: 800;
-    box-shadow: 0 12px 24px rgba(27, 146, 127, 0.24);
-    transition:
-        transform var(--transicao),
-        box-shadow var(--transicao),
-        filter var(--transicao);
+    font-weight: 700;
+    box-shadow: 0 12px 24px rgba(47, 143, 120, 0.24);
+    transition: 0.2s ease;
 }
 
 main button:hover {
+    background: var(--verde-escuro);
+    border-color: var(--verde-escuro);
     transform: translateY(-2px);
-    box-shadow: 0 16px 30px rgba(27, 146, 127, 0.3);
-    filter: brightness(1.04);
 }
 
-main button:active {
-    transform: translateY(0);
-}
-
-main button:focus-visible {
-    outline: 3px solid rgba(244, 201, 93, 0.55);
-    outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto;
-        transition-duration: 0.01ms;
+@media (max-width: 800px) {
+    .menu-container {
+        display: block;
     }
-}
 
-/* RESPONSIVO */
-@media (max-width: 900px) {
     header {
-        position: static;
-        min-height: auto;
         padding: 22px 18px;
     }
 
-    header::before {
-        display: none;
+    header h1 {
+        font-size: 26px;
     }
 
     aside {
-        position: static;
-        width: 100%;
-        height: auto;
-        padding: 18px;
-        border-right: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 16px;
     }
 
     aside ul {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
     }
 
-    aside button {
-        min-height: 56px;
-        text-align: left;
-    }
-
-    aside button:hover,
-    aside button:focus-visible {
-        transform: translateY(-2px);
+    aside button:hover {
+        transform: none;
     }
 
     main {
-        min-height: auto;
-        margin-left: 0;
-        padding: 24px 18px;
+        padding: 20px 16px;
     }
 
     section {
-        min-height: 320px;
-        padding: 36px 28px 28px;
-    }
-}
-
-@media (max-width: 640px) {
-    header h1 {
-        font-size: clamp(24px, 8vw, 32px);
+        min-height: 260px;
+        padding: 24px;
+        border-radius: 8px;
     }
 
-    aside ul {
-        grid-template-columns: 1fr;
+    section h1 {
+        font-size: 30px;
     }
 
-    section {
-        min-height: 280px;
-        padding: 32px 22px 22px;
-    }
-
-    section::after {
-        right: 18px;
-        bottom: 18px;
-        width: 76px;
-        height: 76px;
-    }
-
-    section h1,
     section h2 {
-        font-size: clamp(24px, 8vw, 30px);
-    }
-
-    section p {
-        font-size: 16px;
+        font-size: 26px;
     }
 
     #cadastroPet > p:not(:first-of-type) {
@@ -508,5 +298,13 @@ main button:focus-visible {
 
     main button {
         width: 100%;
+    }
+
+    .bntCadastrarPet {
+        max-width: none;
+    }
+
+    #listaPets {
+        grid-template-columns: 1fr;
     }
 }
