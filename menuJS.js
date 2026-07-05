@@ -12,6 +12,7 @@ const LimparStorageDePets = document.getElementById("limparConsultaPets");
 function ExcluirStorageDePets() {
     localStorage.removeItem("pets");
     pets = [];
+    exibirPets();
     alert("Todos os pets foram removidos com sucesso!");
 }
 
@@ -34,7 +35,6 @@ let pets = JSON.parse(localStorage.getItem("pets")) || [];
 
 function cadastrarPet() {
 
-    for (let i = 0; i < pets.length; i++) {
     if (nome_Pet.value.trim() == "" ||
         especie_Pet.value.trim() == "" ||
         raca_Pet.value.trim() == "" ||
@@ -67,8 +67,8 @@ function cadastrarPet() {
     localStorage.setItem("pets", JSON.stringify(pets));
 
     alert("Pet cadastrado com sucesso!");
-    }
 }
+
 
 botaoCadastrarPet.addEventListener("click", cadastrarPet);
 
