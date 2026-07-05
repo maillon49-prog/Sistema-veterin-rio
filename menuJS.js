@@ -34,6 +34,27 @@ let pets = JSON.parse(localStorage.getItem("pets")) || [];
 
 function cadastrarPet() {
 
+    for (let i = 0; i < pets.length; i++) {
+    if (nome_Pet.value.trim() == "" ||
+        especie_Pet.value.trim() == "" ||
+        raca_Pet.value.trim() == "" ||
+        idade_Pet.value.trim() == "" ||
+        dono_Pet.value.trim() == "") {
+            alert("Por favor, preencha todos os campos antes de cadastrar o pet.");
+            return;
+    }
+
+    for (let i = 0; i < pets.length; i++) {
+        if (nome_Pet.value === pets[i].nome &&
+            especie_Pet.value === pets[i].especie &&
+            raca_Pet.value === pets[i].raca &&
+            idade_Pet.value === pets[i].idade &&
+            dono_Pet.value === pets[i].dono) {
+                alert("Este pet já está cadastrado.");
+                return;
+        }
+    }
+
     const novosPet = {
         nome: nome_Pet.value,
         especie: especie_Pet.value,
@@ -46,6 +67,7 @@ function cadastrarPet() {
     localStorage.setItem("pets", JSON.stringify(pets));
 
     alert("Pet cadastrado com sucesso!");
+    }
 }
 
 botaoCadastrarPet.addEventListener("click", cadastrarPet);
