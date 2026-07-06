@@ -1,18 +1,20 @@
 :root {
-    --verde-950: #102f2b;
-    --verde-850: #17413b;
-    --verde-700: #237763;
-    --verde-500: #36a68c;
-    --menta-100: #e5f7f1;
+    --verde-950: #0f332f;
+    --verde-850: #17443e;
+    --verde-700: #246f60;
+    --verde-500: #37a98f;
+    --menta-100: #e4f7f1;
     --azul-100: #edf7ff;
-    --coral-500: #eb7c68;
+    --coral-500: #ea7c66;
     --coral-100: #fff0ec;
     --amarelo-100: #fff8df;
-    --texto: #1d302c;
-    --texto-suave: #657873;
+    --texto: #1b302c;
+    --texto-suave: #657a75;
     --branco: #ffffff;
-    --linha: #cfe2dc;
-    --sombra: 0 18px 42px rgba(18, 59, 53, 0.14);
+    --campo: #fbfffd;
+    --linha: #cce2dc;
+    --sombra: 0 20px 48px rgba(15, 51, 47, 0.15);
+    --sombra-botao: 0 13px 26px rgba(36, 111, 96, 0.23);
 }
 
 * {
@@ -29,8 +31,8 @@ body {
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--texto);
     background:
-        linear-gradient(135deg, rgba(229, 247, 241, 0.96), rgba(237, 247, 255, 0.9) 56%, rgba(255, 240, 236, 0.92)),
-        #f6fbf9;
+        radial-gradient(circle at top left, rgba(55, 169, 143, 0.16), transparent 34%),
+        linear-gradient(135deg, var(--menta-100), var(--azul-100) 58%, var(--coral-100));
 }
 
 button,
@@ -46,7 +48,7 @@ button {
 .menu-container {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 270px 1fr;
+    grid-template-columns: 280px 1fr;
     grid-template-rows: auto 1fr;
 }
 
@@ -55,7 +57,7 @@ header {
     padding: 24px 30px;
     background: linear-gradient(135deg, var(--verde-950), var(--verde-850));
     color: var(--branco);
-    box-shadow: 0 10px 24px rgba(18, 59, 53, 0.24);
+    box-shadow: 0 12px 28px rgba(15, 51, 47, 0.25);
 }
 
 header h1 {
@@ -68,7 +70,7 @@ header h1 {
 
 aside {
     padding: 24px 18px;
-    background: rgba(16, 47, 43, 0.97);
+    background: rgba(15, 51, 47, 0.98);
 }
 
 aside ul {
@@ -88,7 +90,7 @@ aside button {
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.09);
     color: var(--branco);
-    font-weight: 700;
+    font-weight: 800;
     text-align: left;
     transition: 0.2s ease;
 }
@@ -106,8 +108,8 @@ aside button:focus-visible {
 }
 
 #limparConsultaPets {
-    border-color: rgba(235, 124, 104, 0.55);
-    background: rgba(235, 124, 104, 0.14);
+    border-color: rgba(234, 124, 102, 0.55);
+    background: rgba(234, 124, 102, 0.14);
 }
 
 #limparConsultaPets:hover,
@@ -117,15 +119,15 @@ aside button:focus-visible {
 }
 
 main {
-    padding: 36px;
+    padding: 38px;
 }
 
 section {
     width: 100%;
-    max-width: 940px;
+    max-width: 980px;
     min-height: 320px;
     margin: 0 auto;
-    padding: 32px;
+    padding: 34px;
     border: 1px solid rgba(255, 255, 255, 0.88);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.96);
@@ -141,7 +143,7 @@ section h2 {
 }
 
 section h1 {
-    max-width: 680px;
+    max-width: 720px;
     font-size: 38px;
 }
 
@@ -158,43 +160,48 @@ section p {
 
 #inicio > p,
 #ConsultarPets > p,
+#CadastrarRemedios > p:first-of-type,
 #EstoqueRemedios > p {
-    max-width: 640px;
+    max-width: 660px;
     padding: 14px 16px;
     border: 1px solid var(--linha);
     border-radius: 8px;
-    background: #fbfffd;
+    background: var(--campo);
 }
 
 #cadastroPet,
 #ConsultarPets,
+#CadastrarRemedios,
 #EstoqueRemedios {
     display: none;
 }
 
-#cadastroPet {
-    max-width: 780px;
+#cadastroPet,
+#CadastrarRemedios {
+    max-width: 800px;
 }
 
-#cadastroPet > p:first-of-type {
+#cadastroPet > p:first-of-type,
+#CadastrarRemedios > p:first-of-type {
     display: inline-block;
-    margin-bottom: 20px;
-    padding: 8px 12px;
-    border: 1px solid rgba(54, 166, 140, 0.22);
+    margin-bottom: 22px;
+    padding: 9px 13px;
+    border: 1px solid rgba(55, 169, 143, 0.24);
     border-radius: 8px;
     background: var(--menta-100);
     color: var(--verde-700);
-    font-weight: 700;
+    font-weight: 800;
 }
 
-#cadastroPet > p:not(:first-of-type) {
+#cadastroPet > p:not(:first-of-type),
+#CadastrarRemedios > p:not(:first-of-type) {
     display: grid;
-    grid-template-columns: 96px 1fr;
+    grid-template-columns: 140px 1fr;
     align-items: center;
     gap: 14px;
     margin-top: 15px;
     color: var(--texto);
-    font-weight: 700;
+    font-weight: 800;
 }
 
 input,
@@ -205,26 +212,28 @@ select {
     border: 1px solid var(--linha);
     border-radius: 8px;
     outline: none;
-    background: #fbfffd;
+    background: var(--campo);
     color: var(--texto);
     transition: 0.2s ease;
 }
 
 input:hover,
 select:hover {
-    border-color: rgba(35, 119, 99, 0.45);
+    border-color: rgba(36, 111, 96, 0.45);
+    background: var(--branco);
 }
 
 input:focus,
 select:focus {
     border-color: var(--verde-500);
     background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(54, 166, 140, 0.16);
+    box-shadow: 0 0 0 4px rgba(55, 169, 143, 0.16);
 }
 
 .bntCadastrarPet,
+.bntCadastrarRemedio,
 #botaoConsultarPets {
-    min-width: 210px;
+    min-width: 220px;
 }
 
 #listaPets {
@@ -235,18 +244,18 @@ select:focus {
 }
 
 #listaPets:empty {
-    min-height: 80px;
+    min-height: 86px;
     border: 1px dashed var(--linha);
     border-radius: 8px;
-    background: rgba(251, 255, 253, 0.7);
+    background: rgba(251, 255, 253, 0.72);
 }
 
 .pet-card {
     padding: 18px;
     border: 1px solid var(--linha);
     border-radius: 8px;
-    background: #fbfffd;
-    box-shadow: 0 10px 22px rgba(18, 59, 53, 0.08);
+    background: var(--campo);
+    box-shadow: 0 11px 24px rgba(15, 51, 47, 0.08);
 }
 
 .pet-card h3 {
@@ -277,8 +286,8 @@ main button {
     border-radius: 8px;
     background: linear-gradient(135deg, var(--verde-700), var(--verde-500));
     color: var(--branco);
-    font-weight: 700;
-    box-shadow: 0 12px 24px rgba(35, 119, 99, 0.22);
+    font-weight: 800;
+    box-shadow: var(--sombra-botao);
     transition: 0.2s ease;
 }
 
@@ -293,7 +302,7 @@ main button:active {
 }
 
 main button:focus-visible {
-    outline: 3px solid rgba(54, 166, 140, 0.26);
+    outline: 3px solid rgba(55, 169, 143, 0.26);
     outline-offset: 3px;
 }
 
@@ -340,17 +349,20 @@ main button:focus-visible {
         font-size: 26px;
     }
 
-    #cadastroPet > p:first-of-type {
+    #cadastroPet > p:first-of-type,
+    #CadastrarRemedios > p:first-of-type {
         display: block;
     }
 
-    #cadastroPet > p:not(:first-of-type) {
+    #cadastroPet > p:not(:first-of-type),
+    #CadastrarRemedios > p:not(:first-of-type) {
         grid-template-columns: 1fr;
         gap: 8px;
     }
 
     main button,
     .bntCadastrarPet,
+    .bntCadastrarRemedio,
     #botaoConsultarPets {
         width: 100%;
     }
