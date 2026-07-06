@@ -2,6 +2,7 @@ function abrirTela(nomeTela) {
     document.getElementById("inicio").style.display = "none";
     document.getElementById("cadastroPet").style.display = "none";
     document.getElementById("ConsultarPets").style.display = "none";
+    document.getElementById("CadastrarRemedios").style.display = "none";
     document.getElementById("EstoqueRemedios").style.display = "none";
 
     document.getElementById(nomeTela).style.display = "block";
@@ -69,7 +70,6 @@ function cadastrarPet() {
     alert("Pet cadastrado com sucesso!");
 }
 
-
 botaoCadastrarPet.addEventListener("click", cadastrarPet);
 
 function exibirPets() {
@@ -93,3 +93,4 @@ function exibirPets() {
 }
 
 botaoConsultarPets.addEventListener("click", exibirPets);
+

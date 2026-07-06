@@ -17,6 +17,7 @@
             <ul>
                 <li><button onclick="abrirTela('cadastroPet')">Cadastro de Pets</button></li>
                 <li><button onclick="abrirTela('ConsultarPets')">Consultar Pets</button></li>
+                <li><button onclick="abrirTela('CadastrarRemedios')">Cadastrar Remedios</button></li>
                 <li><button onclick="abrirTela('EstoqueRemedios')">Estoque de Remedios</button></li>
                 <li><button id="limparConsultaPets">Limpar memoria pets</button></li>
             </ul>
@@ -55,9 +56,23 @@
             </div>
         </section>
 
+        <section id="CadastrarRemedios">
+            
+            <h2>Cadastrar Remedios</h2>
+            <p>Insira os dados do remedio</p>
+
+            <p>Nome: <input type="text" id="nomeRemedio" placeholder="Digite o nome do remedio"></p>
+            <p>Quantidade: <input type="number" id="quantidadeRemedio" placeholder="Digite a quantidade do remedio"></p>
+            <p>Data de Validade: <input type="date" id="validadeRemedio"></p>
+
+            <button class="bntCadastrarRemedio" id="botaoCadastrarRemedio">Cadastrar Remedio</button>
+        </section>
+
         <section id="EstoqueRemedios">
+
             <h2>Estoque de Remedios</h2>
             <p>aqui depois eu irei implementar a lógica para consultar o estoque de remedios</p>
+
         </section>
 
 

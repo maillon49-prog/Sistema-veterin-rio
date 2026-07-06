@@ -9,6 +9,11 @@ let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
 botaoLogin.addEventListener("click", function() {
+    if (Nome_do_Usuario.value.trim() === "" ||
+        senha_do_Usuario.value.trim() === "") {
+        alert("Por favor, preencha todos os campos.");
+        return;
+    }
 
     for (let i = 0; i < usuarios.length; i++) {
         if (Nome_do_Usuario.value === usuarios[i].perfil &&
@@ -23,6 +28,12 @@ botaoLogin.addEventListener("click", function() {
 
 
 botaoCadastro.addEventListener("click", function() {
+    if (Nome_do_Usuario.value.trim() === "" ||
+        senha_do_Usuario.value.trim() === "") {
+        alert("Por favor, preencha todos os campos.");
+        return;
+    }
+
     {
     for (let i = 0; i < usuarios.length; i++) {
         if (Nome_do_Usuario.value === usuarios[i].perfil &&

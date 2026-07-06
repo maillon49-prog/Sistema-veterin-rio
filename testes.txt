@@ -1,0 +1,20 @@
+bloco para testes
+
+post no F12 do navegaador para testar a aba das consultas
+
+const petsTeste = [
+    { nome: "Thor", especie: "Cachorro", raca: "Golden Retriever", idade: "5", dono: "João Silva" },
+    { nome: "Luna", especie: "Gato", raca: "Persa", idade: "2", dono: "Maria Oliveira" },
+    { nome: "Rex", especie: "Cachorro", raca: "Pastor Alemão", idade: "4", dono: "Carlos Souza" },
+    { nome: "Mia", especie: "Gato", raca: "Siamês", idade: "1", dono: "Ana Lima" },
+    { nome: "Bob", especie: "Cachorro", raca: "Poodle", idade: "8", dono: "Fernanda Costa" },
+    { nome: "Mel", especie: "Cachorro", raca: "Shih-tzu", idade: "3", dono: "Ricardo Alves" },
+    { nome: "Nina", especie: "Gato", raca: "Maine Coon", idade: "6", dono: "Juliana Santos" },
+    { nome: "Toby", especie: "Cachorro", raca: "Beagle", idade: "2", dono: "Paulo Mendes" },
+    { nome: "Amora", especie: "Gato", raca: "Sem raça definida", idade: "4", dono: "Camila Rocha" },
+    { nome: "Apolo", especie: "Cachorro", raca: "Husky Siberiano", idade: "5", dono: "Marcos Lima" }
+];
+
+localStorage.setItem("pets", JSON.stringify(petsTeste));
+
+console.log("Pets de teste cadastrados com sucesso!");
