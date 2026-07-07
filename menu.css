@@ -251,6 +251,9 @@ select:focus {
 }
 
 .pet-card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 10px;
     padding: 18px;
     border: 1px solid var(--linha);
     border-radius: 8px;
@@ -259,6 +262,7 @@ select:focus {
 }
 
 .pet-card h3 {
+    grid-column: 1 / -1;
     margin: 0 0 12px;
     color: var(--verde-950);
     font-size: 22px;
@@ -266,6 +270,7 @@ select:focus {
 }
 
 .pet-card p {
+    grid-column: 1 / -1;
     margin: 8px 0;
     color: var(--texto);
     font-size: 16px;
@@ -273,6 +278,8 @@ select:focus {
 }
 
 .pet-card hr {
+    grid-column: 1 / -1;
+    width: 100%;
     margin: 16px 0 0;
     border: 0;
     border-top: 1px solid var(--linha);
@@ -304,6 +311,44 @@ main button:active {
 main button:focus-visible {
     outline: 3px solid rgba(55, 169, 143, 0.26);
     outline-offset: 3px;
+}
+
+main .pet-card .botaoEditar,
+main .pet-card .botaoExcluir {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    margin-top: 16px;
+    padding: 0 14px;
+    box-shadow: none;
+}
+
+main .pet-card .botaoEditar {
+    grid-column: 1;
+    border-color: var(--verde-700);
+    background: var(--branco);
+    color: var(--verde-700);
+}
+
+main .pet-card .botaoEditar:hover {
+    border-color: var(--verde-950);
+    background: var(--menta-100);
+    color: var(--verde-950);
+    transform: translateY(-1px);
+}
+
+main .pet-card .botaoExcluir {
+    grid-column: 2;
+    border-color: rgba(234, 124, 102, 0.7);
+    background: var(--coral-100);
+    color: var(--coral-500);
+}
+
+main .pet-card .botaoExcluir:hover {
+    border-color: var(--coral-500);
+    background: var(--coral-500);
+    color: var(--branco);
+    transform: translateY(-1px);
 }
 
 @media (max-width: 800px) {
