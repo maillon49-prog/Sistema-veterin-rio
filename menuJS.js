@@ -63,8 +63,23 @@ function cadastrarPet() {
         };
 
         localStorage.setItem("pets", JSON.stringify(pets));
+        exibirPets();
 
         petEditando = null;
+
+        nome_Pet.value = "";
+    especie_Pet.value = "";
+    raca_Pet.value = "";
+    idade_Pet.value = "";
+    dono_Pet.value = "";
+
+    botaoCadastrarPet.textContent = "Cadastrar Pet";
+
+    botaoCancelamentoEdicao.innerHTML = "";
+
+    abrirTela("inicio");
+
+    exibirPets();
 
         alert("Pet editado com sucesso!");
         return;
@@ -91,6 +106,7 @@ function cadastrarPet() {
 
     pets.push(novosPet);
     localStorage.setItem("pets", JSON.stringify(pets));
+    exibirPets();
 
     alert("Pet cadastrado com sucesso!");
 
@@ -164,3 +180,46 @@ function editarPet(index) {
                                         onclick="cancelarEdicao()">Cancelar Edição</button>`;
 
 }
+
+function excluirPet(index) {
+    
+    const confirmarExclusao = confirm(`Tem certeza que deseja excluir o pet ${pets[index].nome} do dono ${pets[index].dono}?`)
+
+    if (confirmarExclusao) {
+        pets.splice(index, 1);
+        localStorage.setItem("pets", JSON.stringify(pets));
+        exibirPets();
+        alert("Pet excluído com sucesso!");
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exibirPets();
