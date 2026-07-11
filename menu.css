@@ -236,6 +236,34 @@ select:focus {
     min-width: 220px;
 }
 
+#cadastroPet > .bntCadastrarPet {
+    vertical-align: top;
+}
+
+#botaoCancelamentoEdicao {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+#botaoCancelamentoEdicao:not(:has(button)) {
+    display: none;
+}
+
+#botaoCancelarEdicao {
+    min-width: 190px;
+    border-color: rgba(234, 124, 102, 0.72);
+    background: var(--coral-100);
+    color: var(--coral-500);
+    box-shadow: none;
+}
+
+#botaoCancelarEdicao:hover {
+    border-color: var(--coral-500);
+    background: var(--coral-500);
+    color: var(--branco);
+}
+
 #listaPets {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -408,8 +436,14 @@ main .pet-card .botaoExcluir:hover {
     main button,
     .bntCadastrarPet,
     .bntCadastrarRemedio,
-    #botaoConsultarPets {
+    #botaoConsultarPets,
+    #botaoCancelarEdicao {
         width: 100%;
+    }
+
+    #botaoCancelamentoEdicao {
+        width: 100%;
+        margin-left: 0;
     }
 
     #listaPets {
