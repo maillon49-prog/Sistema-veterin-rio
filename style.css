@@ -1,19 +1,19 @@
 :root {
-    --verde-950: #0f332f;
-    --verde-800: #18534a;
-    --verde-600: #26836f;
-    --verde-400: #42b99e;
-    --menta-100: #e4f7f1;
-    --azul-100: #edf7ff;
-    --coral-500: #ea7c66;
-    --coral-100: #fff0ec;
-    --texto: #1b302c;
-    --texto-suave: #657a75;
+    --verde-950: #2f2457;
+    --verde-800: #54398f;
+    --verde-600: #7352c6;
+    --verde-400: #a78bfa;
+    --menta-100: #f1edff;
+    --azul-100: #f6f3ff;
+    --coral-500: #d75b7f;
+    --coral-100: #fff0f6;
+    --texto: #2c2440;
+    --texto-suave: #706783;
     --branco: #ffffff;
-    --campo: #fbfffd;
-    --linha: #cce2dc;
-    --sombra-card: 0 24px 55px rgba(15, 51, 47, 0.18);
-    --sombra-botao: 0 14px 28px rgba(38, 131, 111, 0.26);
+    --campo: #fffaff;
+    --linha: #d9cdf5;
+    --sombra-card: 0 24px 55px rgba(47, 36, 87, 0.22);
+    --sombra-botao: 0 14px 28px rgba(115, 82, 198, 0.3);
 }
 
 * {
@@ -30,8 +30,8 @@ body {
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--texto);
     background:
-        radial-gradient(circle at top left, rgba(66, 185, 158, 0.18), transparent 34%),
-        linear-gradient(135deg, var(--menta-100), var(--azul-100) 58%, var(--coral-100));
+        linear-gradient(110deg, rgba(62, 44, 112, 0.78), rgba(167, 139, 250, 0.2) 42%, rgba(255, 255, 255, 0.18)),
+        url("imgs/tela login.png") left center / cover no-repeat fixed;
 }
 
 button,
@@ -47,10 +47,10 @@ button {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    padding: 40px 18px;
-    text-align: center;
+    padding: 44px clamp(18px, 7vw, 92px) 44px 18px;
+    text-align: left;
 }
 
 .inicial-container h1 {
@@ -60,6 +60,7 @@ button {
     font-size: 56px;
     line-height: 1.04;
     letter-spacing: 0;
+    text-shadow: 0 4px 22px rgba(255, 255, 255, 0.72);
 }
 
 .inicial-container p {
@@ -68,20 +69,41 @@ button {
     color: var(--texto-suave);
     font-size: 20px;
     line-height: 1.45;
+    text-shadow: 0 3px 15px rgba(255, 255, 255, 0.66);
 }
 
 .form-container {
     width: 100%;
     max-width: 430px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 14px;
     margin-top: 32px;
     padding: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(255, 255, 255, 0.74);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 250, 255, 0.92);
+    backdrop-filter: blur(14px);
     box-shadow: var(--sombra-card);
+}
+
+.form-container::before {
+    content: "";
+    position: absolute;
+    top: -46px;
+    right: -38px;
+    width: 150px;
+    height: 150px;
+    background: url("imgs/patinha-decorativa.png") center / contain no-repeat;
+    opacity: 0.13;
+    pointer-events: none;
+}
+
+.form-container > * {
+    position: relative;
+    z-index: 1;
 }
 
 .inputUsuario,
@@ -107,7 +129,7 @@ button {
 .inputSenha:focus {
     border-color: var(--verde-400);
     background: var(--branco);
-    box-shadow: 0 0 0 4px rgba(66, 185, 158, 0.16);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.22);
 }
 
 .btnLogin,
@@ -128,7 +150,7 @@ button {
 }
 
 .btnCadastro {
-    border: 1px solid rgba(234, 124, 102, 0.58);
+    border: 1px solid rgba(215, 91, 127, 0.58);
     background: var(--branco);
     color: var(--coral-500);
 }
@@ -155,13 +177,16 @@ button {
 
 .btnLogin:focus-visible,
 .btnCadastro:focus-visible {
-    outline: 3px solid rgba(66, 185, 158, 0.28);
+    outline: 3px solid rgba(167, 139, 250, 0.34);
     outline-offset: 3px;
 }
 
 @media (max-width: 520px) {
     .inicial-container {
+        align-items: center;
         padding: 30px 16px;
+        text-align: center;
+        background: rgba(47, 36, 87, 0.18);
     }
 
     .inicial-container h1 {
